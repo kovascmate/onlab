@@ -3,7 +3,7 @@ grammar Nyelvtan;
 program: (package_def)? imports class;
 
 imports: import_def*;
-class: class_def '{' variables  functions /*connections*/ '}';
+class: class_def '{' variables  functions connections '}';
 variables: variable*;
 functions: function*;
 package_def: 'package' (IDENTIFIER|CLASS_NAME) ';';
@@ -23,10 +23,10 @@ boolean_variable: VISIBILITY?  'boolean'   IDENTIFIER ('=' ('true'| 'false') )? 
 variable_name : 'int' | 'boolean' | 'string' | 'double';
 return_state: 'return' (NUMBERS | IDENTIFIER) ';';
 
-//connections: (aggregation | association)*;
+connections: (aggregation | association)*;
 
-//aggregation: VISIBILITY? 'aggregation' IDENTIFIER ':' IDENTIFIER ('[' (IDENTIFIER (',' IDENTIFIER)*)? ']')? ';';
-//association: VISIBILITY? 'association' IDENTIFIER ':' IDENTIFIER ('[' (IDENTIFIER (',' IDENTIFIER)*)? ']')? ';';
+aggregation: VISIBILITY? 'aggregation' CLASS_NAME ':' IDENTIFIER  ';';
+association: VISIBILITY? 'association' CLASS_NAME ':' IDENTIFIER  ';';
 
 WHITESPACE: [ \t]+ -> skip;
 NEWLINE: '\r'? '\n' -> skip;
