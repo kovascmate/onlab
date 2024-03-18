@@ -3,7 +3,7 @@ grammar Nyelvtan;
 program: (package_def)? imports class;
 
 imports: import_def*;
-class: class_def '{' variables  functions '}';
+class: class_def '{' variables  functions /*connections*/ '}';
 variables: variable*;
 functions: function*;
 package_def: 'package' IDENTIFIER ';';
@@ -17,12 +17,16 @@ function: VISIBILITY?
             ('void'       IDENTIFIER '(' parameter_list ')'
                                 '{' variables IDENTIFIER*              '}');
 
-string_variable : VISIBILITY?  'string'    IDENTIFIER '=' '"' IDENTIFIER '"'   ';';
-int_variable :    VISIBILITY?  'int'       IDENTIFIER '=' NUMBERS              ';';
-boolean_variable: VISIBILITY?  'boolean'   IDENTIFIER '=' ('true'| 'false')    ';';
+string_variable : VISIBILITY?  'string'    IDENTIFIER ('=' '"' IDENTIFIER '"')?   ';';
+int_variable :    VISIBILITY?  'int'       IDENTIFIER ('=' NUMBERS           )?   ';';
+boolean_variable: VISIBILITY?  'boolean'   IDENTIFIER ('=' ('true'| 'false') )?   ';';
 variable_name : 'int' | 'boolean' | 'string' | 'double';
 return_state: 'return' (NUMBERS | IDENTIFIER) ';';
 
+//connections: (aggregation | association)*;
+
+//aggregation: VISIBILITY? 'aggregation' IDENTIFIER ':' IDENTIFIER ('[' (IDENTIFIER (',' IDENTIFIER)*)? ']')? ';';
+//association: VISIBILITY? 'association' IDENTIFIER ':' IDENTIFIER ('[' (IDENTIFIER (',' IDENTIFIER)*)? ']')? ';';
 
 WHITESPACE: [ \t]+ -> skip;
 NEWLINE: '\r'? '\n' -> skip;
