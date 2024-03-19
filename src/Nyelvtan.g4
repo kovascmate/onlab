@@ -3,9 +3,10 @@ grammar Nyelvtan;
 program: (package_def)? imports class;
 
 imports: import_def*;
-class: class_def '{' variables  functions connections '}';
+class: class_def '{' variables  functions connections enumerations '}';
 variables: variable*;
 functions: function*;
+enumerations: enumeration*;
 package_def: 'package' (IDENTIFIER|CLASS_NAME) ';';
 import_def: 'import' QualifiedImportName ';';
 parameter_list : (variable_name IDENTIFIER)*;
@@ -25,6 +26,10 @@ return_state: 'return' (NUMBERS | IDENTIFIER) ';';
 
 connections: (aggregation | association)*;
 
+enumeration: 'enum' CLASS_NAME '{' enum_constants '}';
+enum_constants: CLASS_NAME (',' CLASS_NAME)*;
+
+
 aggregation: VISIBILITY? 'aggregation' CLASS_NAME ':' IDENTIFIER  ';';
 association: VISIBILITY? 'association' CLASS_NAME ':' IDENTIFIER  ';';
 
@@ -33,6 +38,6 @@ NEWLINE: '\r'? '\n' -> skip;
 //LOOPS:          'for' | 'while';
 VISIBILITY : 'private' | 'public' | 'protected';
 NUMBERS : ('-'|'+')? [0-9]+;
-CLASS_NAME: [A-Z]IDENTIFIER;
+CLASS_NAME: [A-Z]* IDENTIFIER;
 IDENTIFIER: [a-z][a-zA-Z0-9_]*;
 QualifiedImportName: (IDENTIFIER|CLASS_NAME) ('.' (IDENTIFIER|CLASS_NAME))+ ('.*')?;
