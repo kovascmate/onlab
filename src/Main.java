@@ -1,3 +1,5 @@
+import generated.ClassDiagramLexer;
+import generated.ClassDiagramParser;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 
@@ -5,9 +7,6 @@ import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.net.URL;
-import java.security.CodeSource;
-import java.security.ProtectionDomain;
 
 
 public class Main {
@@ -22,10 +21,10 @@ public class Main {
             File selectedFile = fileChooser.getSelectedFile();
             String fileContent = readFile(selectedFile);
             ANTLRInputStream    inputStream = new ANTLRInputStream(fileContent);
-            NyelvtanLexer       lexer       = new NyelvtanLexer(inputStream);
+            ClassDiagramLexer       lexer       = new ClassDiagramLexer(inputStream);
             CommonTokenStream   tokenStream = new CommonTokenStream(lexer);
-            NyelvtanParser      parser      = new NyelvtanParser(tokenStream);
-            NyelvtanParser.ProgramContext context     = parser.program();
+            ClassDiagramParser      parser      = new ClassDiagramParser(tokenStream);
+            ClassDiagramParser.ProgramContext context     = parser.program();
             //var ast = ReadAST(fileChooser.getSelectedFile());
 
         } else {
