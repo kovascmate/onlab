@@ -22,7 +22,7 @@ public class Main {
             NyelvtanLexer       lexer       = new NyelvtanLexer(inputStream);
             CommonTokenStream   tokenStream = new CommonTokenStream(lexer);
             NyelvtanParser      parser      = new NyelvtanParser(tokenStream);
-            // var context     = parser.program();
+             var context     = parser.program();
 
             //var ast = ReadAST(fileChooser.getSelectedFile());
 

@@ -1,0 +1,24 @@
+package frame;
+import javax.swing.*;
+
+import circuit_element.Circuit_Element;
+import file_management.File_management;
+import table.Table;
+
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Frame extends ListActivity implements Polygon
+
+{
+	public int asd = 2;
+	public string basd = "asd";
+	string test = "test";
+	void asd ( int a ){
+	}
+	int asd(boolean xd){
+	
+	return asd;
+	}
+}
