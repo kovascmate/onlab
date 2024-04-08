@@ -38,6 +38,6 @@ NEWLINE: '\r'? '\n' -> skip;
 //LOOPS:          'for' | 'while';
 VISIBILITY : 'private' | 'public' | 'protected';
 NUMBERS : ('-'|'+')? [0-9]+;
-CLASS_NAME: [A-Z]* IDENTIFIER;
+CLASS_NAME: [A-Z][a-zA-Z0-9_]*;
 IDENTIFIER: [a-z][a-zA-Z0-9_]*;
 QualifiedImportName: (IDENTIFIER|CLASS_NAME) ('.' (IDENTIFIER|CLASS_NAME))+ ('.*')?;
