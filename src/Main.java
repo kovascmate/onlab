@@ -11,7 +11,7 @@ import java.io.FileReader;
 
 public class Main {
     public static void main(String[] args) throws UnsupportedLookAndFeelException, ClassNotFoundException, InstantiationException, IllegalAccessException {
-
+        ClassDiagramVisitor visitor = new ClassDiagramVisitor();
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         JFileChooser fileChooser = new JFileChooser(System.getProperty("user.dir"));
         UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
@@ -20,16 +20,9 @@ public class Main {
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
             ClassDiagramParser.ProgramContext context = ReadAST(selectedFile);
-            for(int i = 0;i<context.getChildCount() ;i++){
-                var configLineTree = context.getChild(i);
-                if(configLineTree.getChildCount() == 1){
-
-                }else{
-                    var nameTree = configLineTree.getChild(0);
-                    var valueTree = configLineTree.getChild(2);
-                    System.out.println("Name: "+nameTree.getText()+", Value: "+valueTree.getText());
-                }
-            }
+            int asd = 2;
+            visitor.addContext(context);
+            visitor.visitProgram(context);
         } else {
             System.out.println("Nincs fájl kiválasztva.");
         }
@@ -54,5 +47,9 @@ public class Main {
             e.printStackTrace();
         }
         return content.toString();
+    }
+
+    public void Visitor(ClassDiagramParser.ProgramContext _context){
+
     }
 }
