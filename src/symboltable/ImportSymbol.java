@@ -1,18 +1,19 @@
 package symboltable;
 
-public class ImportSymbol {
-    private final String importedName;
+public class ImportSymbol extends Symbol{
+    private final SymbolType symbolType;
 
-    public ImportSymbol(String importedName) {
-        this.importedName = importedName;
+    public ImportSymbol(String _importedName) {
+       super(_importedName);
+       symbolType = SymbolType.IMPORTSYMBOL;
     }
 
     public String getImportedName() {
-        return importedName;
+        return getName();
     }
 
     @Override
     public String toString() {
-        return "Imported: " + importedName;
+        return "Imported: " + getName();
     }
 }

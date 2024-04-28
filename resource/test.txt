@@ -9,16 +9,23 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Frame extends ListActivity implements Polygon
-
+public interface Polygon implements Cube
 {
-	public int asd = 2;
-	public string basd = "asd";
-	string test = "test";
-	void asd ( int a ){
+
+}
+
+
+public class Frame extends ListActivity implements Polygon
+{
+	public void init(int a)
+	{
+	    string a = "kisauto";
 	}
-	int asd(boolean xd){
-	
-	return asd;
+	public string doubleValue(int value){
+	    string ret = "asd";
+	    return ret;
 	}
+}
+
+public class Object{
 }

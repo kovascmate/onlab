@@ -29,6 +29,18 @@ public interface ClassDiagramVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitClass(ClassDiagramParser.ClassContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link ClassDiagramParser#interface}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInterface(ClassDiagramParser.InterfaceContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ClassDiagramParser#interface_def}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInterface_def(ClassDiagramParser.Interface_defContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link ClassDiagramParser#variables}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -53,17 +65,35 @@ public interface ClassDiagramVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitPackage_def(ClassDiagramParser.Package_defContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link ClassDiagramParser#package_def_name}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPackage_def_name(ClassDiagramParser.Package_def_nameContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link ClassDiagramParser#import_def}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitImport_def(ClassDiagramParser.Import_defContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link ClassDiagramParser#import_def_name}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitImport_def_name(ClassDiagramParser.Import_def_nameContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link ClassDiagramParser#parameter_list}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitParameter_list(ClassDiagramParser.Parameter_listContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ClassDiagramParser#parameter_name}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParameter_name(ClassDiagramParser.Parameter_nameContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link ClassDiagramParser#variable}.
 	 * @param ctx the parse tree
@@ -77,11 +107,35 @@ public interface ClassDiagramVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitClass_def(ClassDiagramParser.Class_defContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link ClassDiagramParser#class_name}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitClass_name(ClassDiagramParser.Class_nameContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ClassDiagramParser#extended_class_name}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExtended_class_name(ClassDiagramParser.Extended_class_nameContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ClassDiagramParser#interface_name}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInterface_name(ClassDiagramParser.Interface_nameContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link ClassDiagramParser#function}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitFunction(ClassDiagramParser.FunctionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ClassDiagramParser#function_name}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunction_name(ClassDiagramParser.Function_nameContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link ClassDiagramParser#string_variable}.
 	 * @param ctx the parse tree

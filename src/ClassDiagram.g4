@@ -1,43 +1,219 @@
 grammar ClassDiagram;
 
-program: (package_def)? imports class;
+program
+    : (package_def)?
+    imports
+    (class| interface)*
+    ;
 
-imports: import_def*;
-class: class_def '{' variables  functions connections enumerations '}';
-variables: variable*;
-functions: function*;
-enumerations: enumeration*;
-package_def: 'package' (IDENTIFIER|CLASS_NAME) ';';
-import_def: 'import' QualifiedImportName ';';
-parameter_list : (variable_name IDENTIFIER)*;
-variable: (string_variable | int_variable | boolean_variable);
-class_def: VISIBILITY? 'class' CLASS_NAME ('extends' CLASS_NAME)? ('implements' CLASS_NAME (',' CLASS_NAME)* )?;
-function: VISIBILITY?
-            (variable_name IDENTIFIER '(' parameter_list ')'
-                                '{' variables IDENTIFIER* return_state '}')|
-            ('void'       IDENTIFIER '(' parameter_list ')'
-                                '{' variables IDENTIFIER*              '}');
+imports
+    : import_def*
+    ;
 
-string_variable : VISIBILITY?  'string'    IDENTIFIER ('=' '"' IDENTIFIER '"')?   ';';
-int_variable :    VISIBILITY?  'int'       IDENTIFIER ('=' NUMBERS           )?   ';';
-boolean_variable: VISIBILITY?  'boolean'   IDENTIFIER ('=' ('true'| 'false') )?   ';';
-variable_name : 'int' | 'boolean' | 'string' | 'double';
-return_state: 'return' (NUMBERS | IDENTIFIER) ';';
+class
+    : class_def
+    '{'
+        variables
+        functions
+        connections
+        enumerations
+    '}'
+    ;
+interface
+    : VISIBILITY?
+    interface_def
+    ('implements' interface_name)?
+    '{'
+        variables
+        functions
+        connections
+        enumerations
+    '}'
+    ;
+interface_def
+    : 'interface'
+    interface_name
+    ;
+variables
+    : variable*
+    ;
 
-connections: (aggregation | association)*;
+functions
+    : (function)*
+    ;
 
-enumeration: 'enum' CLASS_NAME '{' enum_constants '}';
-enum_constants: CLASS_NAME (',' CLASS_NAME)*;
+enumerations
+    : enumeration*
+    ;
+package_def
+    : 'package'
+    package_def_name
+     ';'
+     ;
+package_def_name
+    :(IDENTIFIER|CLASS_NAME)
+    ;
+import_def
+    : 'import'
+    import_def_name
+    ';'
+    ;
+import_def_name
+    : QualifiedImportName
+    ;
+parameter_list
+    : (variable_name parameter_name)*
+    ;
+parameter_name
+    :IDENTIFIER
+    ;
+variable
+    :(string_variable | int_variable | boolean_variable)
+    ;
+class_def
+    : VISIBILITY?
+    'class'
+    class_name
+    ('extends' extended_class_name)?
+    ('implements' interface_name
+    //(',' CLASS_NAME)*
+    )?
+    ;
+
+class_name
+    :CLASS_NAME
+    ;
+extended_class_name
+    :CLASS_NAME
+    ;
+interface_name
+    :CLASS_NAME
+    ;
+function
+    : VISIBILITY?
+            (('void' function_name '(' parameter_list ')'
+            '{'
+            variables
+            IDENTIFIER*
+             '}')
+             |
+            (variable_name function_name '(' parameter_list ')'
+            '{'
+            variables
+            IDENTIFIER* 
+            return_state '}'))
+
+    ;
+function_name
+    : IDENTIFIER
+    ;
+
+string_variable
+    : VISIBILITY?
+    'string'
+    IDENTIFIER
+    ('=' '"' IDENTIFIER '"')?
+    ';'
+    ;
+
+int_variable
+    : VISIBILITY?
+    'int'
+    IDENTIFIER
+     ('=' NUMBERS)?
+     ';'
+     ;
+
+boolean_variable
+    :
+    VISIBILITY?
+    'boolean'
+    IDENTIFIER
+    ('=' ('true'| 'false') )?
+    ';'
+    ;
+variable_name
+    : 'int'
+    | 'boolean'
+    | 'string'
+    | 'double'
+    ;
+return_state
+    : 'return'
+    (NUMBERS
+    | IDENTIFIER)
+    ';'
+    ;
+
+connections
+    : (aggregation
+    | association)*
+    ;
+
+enumeration
+    : 'enum'
+    CLASS_NAME
+    '{'
+        enum_constants
+    '}'
+    ;
+enum_constants
+    :
+    CLASS_NAME
+    (','
+    CLASS_NAME
+    )*
+    ;
 
 
-aggregation: VISIBILITY? 'aggregation' CLASS_NAME ':' IDENTIFIER  ';';
-association: VISIBILITY? 'association' CLASS_NAME ':' IDENTIFIER  ';';
+aggregation
+    : VISIBILITY?
+    'aggregation'
+    CLASS_NAME
+    ':'
+    IDENTIFIER
+    ';'
+    ;
+association
+    :
+    VISIBILITY?
+    'association'
+    CLASS_NAME
+    ':'
+    IDENTIFIER
+    ';'
+    ;
 
-WHITESPACE: [ \t]+ -> skip;
-NEWLINE: '\r'? '\n' -> skip;
-//LOOPS:          'for' | 'while';
-VISIBILITY : 'private' | 'public' | 'protected';
-NUMBERS : ('-'|'+')? [0-9]+;
-CLASS_NAME: [A-Z][a-zA-Z0-9_]*;
-IDENTIFIER: [a-z][a-zA-Z0-9_]*;
-QualifiedImportName: (IDENTIFIER|CLASS_NAME) ('.' (IDENTIFIER|CLASS_NAME))+ ('.*')?;
+WHITESPACE
+    :
+    [ \t]+ ->
+    skip
+    ;
+NEWLINE
+    : '\r'? '\n' ->
+    skip
+    ;
+
+VISIBILITY
+    :
+    'private'
+    | 'public'
+    | 'protected'
+    ;
+NUMBERS
+    :
+    ('-'|'+')? [0-9]+
+    ;
+CLASS_NAME
+    : [A-Z][a-zA-Z0-9_]*
+    ;
+IDENTIFIER
+    : [a-z][a-zA-Z0-9_]*
+    ;
+QualifiedImportName
+    : (IDENTIFIER
+    |CLASS_NAME)
+    ('.' (IDENTIFIER
+    |CLASS_NAME))+
+    ('.*')?
+    ;

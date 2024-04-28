@@ -1,0 +1,14 @@
+package dummy.packagedef;
+
+import other.dummy.importvalue;
+
+class Dummy{
+public  int a;
+private bool b;
+
+public Dummy(){}
+
+    public void init(int _input){
+        a = 2;
+    }
+}
