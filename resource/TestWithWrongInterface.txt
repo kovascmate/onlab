@@ -9,7 +9,7 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public interface Polygon implements Cube
+public interface Polygona implements Cube
 {
 
 }
@@ -27,5 +27,5 @@ public class Frame implements Polygon
 	}
 }
 
-public class Object extends Frame{
+public class Object{
 }

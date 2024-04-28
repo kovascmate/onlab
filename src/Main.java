@@ -8,11 +8,11 @@ import java.io.File;
 
 public class Main {
 
-    public static void main(String[] args) throws UnsupportedLookAndFeelException, ClassNotFoundException, InstantiationException, IllegalAccessException {
-        Functions4use f = new Functions4use();
+    public static void main(String[] args) throws Exception {
         TypeSystem typeSystem = new TypeSystem();
         ClassDiagramExceptionHandler exceptionHandler = new ClassDiagramExceptionHandler();
         ClassDiagramVisitor visitor = new ClassDiagramVisitor(exceptionHandler,typeSystem);
+        ClassDiagramSemanticAnalyzer semanticAnalyzer = new ClassDiagramSemanticAnalyzer(typeSystem,exceptionHandler);
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         JFileChooser fileChooser = new JFileChooser(System.getProperty("user.dir"));
         UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
@@ -20,10 +20,11 @@ public class Main {
 
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
-            ClassDiagramParser.ProgramContext context = f.ReadAST(selectedFile);
-           // visitor.addContext(context);
+            ClassDiagramParser.ProgramContext context = Functions4use.ReadAST(selectedFile);
+
             visitor.visitProgram(context);
-            var object = visitor.visit(context);
+            semanticAnalyzer.SemanticAnalyze();
+
             int asd = 2;
         } else {
             System.out.println("Nincs fájl kiválasztva.");
