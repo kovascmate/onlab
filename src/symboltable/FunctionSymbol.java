@@ -3,15 +3,24 @@ package symboltable;
 import java.util.List;
 
 public class FunctionSymbol extends Symbol {
-    private final String returnType;
-    private final List<String> parameters;
+    private  String returnType;
+    private final SymbolType symbolType;
+    private  List<String> parameters;
+    private  String visibility;
 
     public FunctionSymbol(String name, String returnType, List<String> parameters) {
         super(name);
+        this.symbolType = SymbolType.FUNCTIONSYMBOL;
         this.returnType = returnType;
         this.parameters = parameters;
     }
-
+    public FunctionSymbol(String name){
+        super(name);
+        this.symbolType = SymbolType.FUNCTIONSYMBOL;
+    }
+    public void setVisibility(String _visibility){
+        visibility = _visibility;
+    }
 
     public String getReturnType() {
         return returnType;

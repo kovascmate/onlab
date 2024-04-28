@@ -53,6 +53,30 @@ public class ClassDiagramBaseListener implements ClassDiagramListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterInterface(ClassDiagramParser.InterfaceContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitInterface(ClassDiagramParser.InterfaceContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterInterface_def(ClassDiagramParser.Interface_defContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitInterface_def(ClassDiagramParser.Interface_defContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterVariables(ClassDiagramParser.VariablesContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -101,6 +125,18 @@ public class ClassDiagramBaseListener implements ClassDiagramListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterPackage_def_name(ClassDiagramParser.Package_def_nameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPackage_def_name(ClassDiagramParser.Package_def_nameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterImport_def(ClassDiagramParser.Import_defContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -113,6 +149,18 @@ public class ClassDiagramBaseListener implements ClassDiagramListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterImport_def_name(ClassDiagramParser.Import_def_nameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitImport_def_name(ClassDiagramParser.Import_def_nameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterParameter_list(ClassDiagramParser.Parameter_listContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -120,6 +168,18 @@ public class ClassDiagramBaseListener implements ClassDiagramListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitParameter_list(ClassDiagramParser.Parameter_listContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterParameter_name(ClassDiagramParser.Parameter_nameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitParameter_name(ClassDiagramParser.Parameter_nameContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -149,6 +209,42 @@ public class ClassDiagramBaseListener implements ClassDiagramListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterClass_name(ClassDiagramParser.Class_nameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitClass_name(ClassDiagramParser.Class_nameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterExtended_class_name(ClassDiagramParser.Extended_class_nameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExtended_class_name(ClassDiagramParser.Extended_class_nameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterInterface_name(ClassDiagramParser.Interface_nameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitInterface_name(ClassDiagramParser.Interface_nameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterFunction(ClassDiagramParser.FunctionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -156,6 +252,18 @@ public class ClassDiagramBaseListener implements ClassDiagramListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitFunction(ClassDiagramParser.FunctionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFunction_name(ClassDiagramParser.Function_nameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunction_name(ClassDiagramParser.Function_nameContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

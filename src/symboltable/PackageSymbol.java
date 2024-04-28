@@ -1,19 +1,20 @@
 package symboltable;
 
-public class PackageSymbol {
-    private final String packageName;
+public class PackageSymbol extends Symbol {
+    private final SymbolType symbolType;
 
-    public PackageSymbol(String packageName) {
-        this.packageName = packageName;
+    public PackageSymbol(String _packageName) {
+        super(_packageName);
+        symbolType = SymbolType.PACKAGESYMBOL;
     }
 
     public String getPackageName() {
-        return packageName;
+        return getName();
     }
 
     @Override
     public String toString() {
-        return "Package: " + packageName;
+        return "Package: " + getName();
     }
 }
 

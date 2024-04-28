@@ -38,6 +38,26 @@ public interface ClassDiagramListener extends ParseTreeListener {
 	 */
 	void exitClass(ClassDiagramParser.ClassContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link ClassDiagramParser#interface}.
+	 * @param ctx the parse tree
+	 */
+	void enterInterface(ClassDiagramParser.InterfaceContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ClassDiagramParser#interface}.
+	 * @param ctx the parse tree
+	 */
+	void exitInterface(ClassDiagramParser.InterfaceContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ClassDiagramParser#interface_def}.
+	 * @param ctx the parse tree
+	 */
+	void enterInterface_def(ClassDiagramParser.Interface_defContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ClassDiagramParser#interface_def}.
+	 * @param ctx the parse tree
+	 */
+	void exitInterface_def(ClassDiagramParser.Interface_defContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link ClassDiagramParser#variables}.
 	 * @param ctx the parse tree
 	 */
@@ -78,6 +98,16 @@ public interface ClassDiagramListener extends ParseTreeListener {
 	 */
 	void exitPackage_def(ClassDiagramParser.Package_defContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link ClassDiagramParser#package_def_name}.
+	 * @param ctx the parse tree
+	 */
+	void enterPackage_def_name(ClassDiagramParser.Package_def_nameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ClassDiagramParser#package_def_name}.
+	 * @param ctx the parse tree
+	 */
+	void exitPackage_def_name(ClassDiagramParser.Package_def_nameContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link ClassDiagramParser#import_def}.
 	 * @param ctx the parse tree
 	 */
@@ -88,6 +118,16 @@ public interface ClassDiagramListener extends ParseTreeListener {
 	 */
 	void exitImport_def(ClassDiagramParser.Import_defContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link ClassDiagramParser#import_def_name}.
+	 * @param ctx the parse tree
+	 */
+	void enterImport_def_name(ClassDiagramParser.Import_def_nameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ClassDiagramParser#import_def_name}.
+	 * @param ctx the parse tree
+	 */
+	void exitImport_def_name(ClassDiagramParser.Import_def_nameContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link ClassDiagramParser#parameter_list}.
 	 * @param ctx the parse tree
 	 */
@@ -97,6 +137,16 @@ public interface ClassDiagramListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitParameter_list(ClassDiagramParser.Parameter_listContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ClassDiagramParser#parameter_name}.
+	 * @param ctx the parse tree
+	 */
+	void enterParameter_name(ClassDiagramParser.Parameter_nameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ClassDiagramParser#parameter_name}.
+	 * @param ctx the parse tree
+	 */
+	void exitParameter_name(ClassDiagramParser.Parameter_nameContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ClassDiagramParser#variable}.
 	 * @param ctx the parse tree
@@ -118,6 +168,36 @@ public interface ClassDiagramListener extends ParseTreeListener {
 	 */
 	void exitClass_def(ClassDiagramParser.Class_defContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link ClassDiagramParser#class_name}.
+	 * @param ctx the parse tree
+	 */
+	void enterClass_name(ClassDiagramParser.Class_nameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ClassDiagramParser#class_name}.
+	 * @param ctx the parse tree
+	 */
+	void exitClass_name(ClassDiagramParser.Class_nameContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ClassDiagramParser#extended_class_name}.
+	 * @param ctx the parse tree
+	 */
+	void enterExtended_class_name(ClassDiagramParser.Extended_class_nameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ClassDiagramParser#extended_class_name}.
+	 * @param ctx the parse tree
+	 */
+	void exitExtended_class_name(ClassDiagramParser.Extended_class_nameContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ClassDiagramParser#interface_name}.
+	 * @param ctx the parse tree
+	 */
+	void enterInterface_name(ClassDiagramParser.Interface_nameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ClassDiagramParser#interface_name}.
+	 * @param ctx the parse tree
+	 */
+	void exitInterface_name(ClassDiagramParser.Interface_nameContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link ClassDiagramParser#function}.
 	 * @param ctx the parse tree
 	 */
@@ -127,6 +207,16 @@ public interface ClassDiagramListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFunction(ClassDiagramParser.FunctionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ClassDiagramParser#function_name}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunction_name(ClassDiagramParser.Function_nameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ClassDiagramParser#function_name}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunction_name(ClassDiagramParser.Function_nameContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ClassDiagramParser#string_variable}.
 	 * @param ctx the parse tree
