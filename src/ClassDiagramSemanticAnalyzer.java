@@ -1,6 +1,8 @@
 import TypeSystem.TypeSystem;
 import exceptition.ClassDiagramExceptionHandler;
 import generated.ClassDiagramBaseVisitor;
+import symboltable.ClassSymbol;
+import symboltable.InterfaceSymbol;
 import symboltable.Symbol;
 
 import javax.swing.*;
@@ -12,17 +14,46 @@ public class ClassDiagramSemanticAnalyzer extends ClassDiagramBaseVisitor<Object
       public ClassDiagramSemanticAnalyzer(TypeSystem _ts, ClassDiagramExceptionHandler _classDiagramExceptionHandler){
           typeSystem = _ts;
           exceptionHandler = _classDiagramExceptionHandler;
-      }
-      public Object SemanticAnalyze(){
 
+      }
+      public Object SemanticAnalyze() {
+          checkParentClassExsistence();
+          checkInterfaceExsistence();
           return  null;
       }
-      public Object checkParentClassExsistence(){
-          List<Symbol> list = typeSystem.getClasses();
-          for(Symbol sym : list){
+      public Object checkParentClassExsistence() {
+          List<ClassSymbol> list = typeSystem.getClasses();
+          for(ClassSymbol sym : list){
+              String parentClass = sym.getParantClass();
+              if(parentClass != null){
+                  if(!typeSystem.containsKey(parentClass)){
+                      String exception_title ="No parent class as :"+parentClass +" in the scope!";
+                      try {
+                          throw new Exception(exception_title);
+                      } catch (Exception e) {
+                          throw new RuntimeException(e);
+                      }
+                  }
+              }
           }
-
           return null;
       }
+    public Object checkInterfaceExsistence() {
+        List<ClassSymbol> list = typeSystem.getClasses();
+        for(ClassSymbol sym : list){
+            String implementedInterface = sym.getInteface();
+            if(implementedInterface != null){
+                if(!typeSystem.containsKey(implementedInterface)){
+                    String exception_title ="No interface as :"+implementedInterface +" in the scope!";
+                    try {
+                        throw new Exception(exception_title);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        }
+        return null;
+    }
 
 }

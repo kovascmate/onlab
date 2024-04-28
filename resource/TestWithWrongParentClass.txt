@@ -15,7 +15,7 @@ public interface Polygon implements Cube
 }
 
 
-public class Frame implements Polygon
+public class Frame extends ListActivity implements Polygon
 {
 	public void init(int a)
 	{

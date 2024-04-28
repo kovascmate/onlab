@@ -19,6 +19,12 @@ public class ClassSymbol extends  Symbol {
         symbolType = SymbolType.CLASSSYMBOL;
 
     }
+    public String getInteface(){
+        return implementedInterface;
+    }
+    public String getParantClass(){
+        return parentClass;
+    }
     public void addParentClass(String _name){
         parentClass = _name;
     }
@@ -49,4 +55,5 @@ public class ClassSymbol extends  Symbol {
         functions_symbol.add(_function_symbol);
         return false;
     }
+
 }

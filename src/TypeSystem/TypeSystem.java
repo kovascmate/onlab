@@ -18,13 +18,28 @@ public class TypeSystem {
     public void add(String _name, Symbol _symbol){
         hashMap.put(_name,_symbol);
     }
-    public List<Symbol> getClasses(){
-        List<Symbol> ret = new ArrayList<>();
-        for(Symbol sym : hashMap.values()){
-            if(sym.getSymbolType() == SymbolType.CLASSSYMBOL){
-                ret.add(sym);
+    public List<ClassSymbol> getClasses(){
+        List<ClassSymbol> ret = new ArrayList<>();
+        for(String key : hashMap.keySet()){
+            Symbol sym = hashMap.get(key);
+            if(sym instanceof ClassSymbol){
+                ret.add((ClassSymbol) sym);
             }
         }
         return  ret;
     }
+    public List<InterfaceSymbol> getInterfaces(){
+        List<InterfaceSymbol> ret = new ArrayList<>();
+        for(String key : hashMap.keySet()){
+            Symbol sym = hashMap.get(key);
+            if(sym instanceof InterfaceSymbol){
+                ret.add((InterfaceSymbol) sym);
+            }
+        }
+        return  ret;
+    }
+    public Symbol get(String _key){
+        return hashMap.get(_key);
+    }
+
 }
