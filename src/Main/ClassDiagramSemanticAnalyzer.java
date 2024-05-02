@@ -1,11 +1,10 @@
+package Main;
+
 import TypeSystem.TypeSystem;
 import exceptition.ClassDiagramExceptionHandler;
 import generated.ClassDiagramBaseVisitor;
 import symboltable.ClassSymbol;
-import symboltable.InterfaceSymbol;
-import symboltable.Symbol;
 
-import javax.swing.*;
 import java.util.List;
 
 public class ClassDiagramSemanticAnalyzer extends ClassDiagramBaseVisitor<Object> {
@@ -41,7 +40,7 @@ public class ClassDiagramSemanticAnalyzer extends ClassDiagramBaseVisitor<Object
     public Object checkInterfaceExsistence() {
         List<ClassSymbol> list = typeSystem.getClasses();
         for(ClassSymbol sym : list){
-            String implementedInterface = sym.getInteface();
+            String implementedInterface = sym.getInterface();
             if(implementedInterface != null){
                 if(!typeSystem.containsKey(implementedInterface)){
                     String exception_title ="No interface as :"+implementedInterface +" in the scope!";

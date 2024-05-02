@@ -1,3 +1,5 @@
+package Main;
+
 import TypeSystem.TypeSystem;
 import exceptition.ClassDiagramExceptionHandler;
 import generated.ClassDiagramBaseVisitor;

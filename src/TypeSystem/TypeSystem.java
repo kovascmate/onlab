@@ -41,5 +41,8 @@ public class TypeSystem {
     public Symbol get(String _key){
         return hashMap.get(_key);
     }
+    public HashMap getHashMap(){
+        return  hashMap;
+    }
 
 }

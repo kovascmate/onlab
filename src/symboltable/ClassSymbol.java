@@ -14,12 +14,15 @@ public class ClassSymbol extends  Symbol {
     public List<FunctionSymbol> functions_symbol;
 
 
+
+
+
     public ClassSymbol(String _name){
         super(_name);
         symbolType = SymbolType.CLASSSYMBOL;
 
     }
-    public String getInteface(){
+    public String getInterface(){
         return implementedInterface;
     }
     public String getParantClass(){
@@ -31,14 +34,14 @@ public class ClassSymbol extends  Symbol {
     public void addImplementedInterface(String _name){
         implementedInterface = _name;
     }
+    public List<VariableSymbol> getVariableSymbols(){
+        return variables_symbol;
+    }
+    public List<FunctionSymbol> getFunctionsSymbols(){
+        return functions_symbol;
+    }
 
-    /*public boolean addParentClass(ClassSymbol _parent_classSymbol){
-       if(_parent_classSymbol == null){
 
-       }
-        parent_classSymbol = _parent_classSymbol;
-       return  false;
-    }*/
     public boolean addVariable(VariableSymbol _variable_symbol){
         if(variables_symbol.contains(_variable_symbol)){
             System.out.println(_variable_symbol.getName()+" already in the list");

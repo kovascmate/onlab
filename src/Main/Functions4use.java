@@ -1,3 +1,5 @@
+package Main;
+
 import generated.ClassDiagramLexer;
 import generated.ClassDiagramParser;
 import org.antlr.v4.runtime.ANTLRInputStream;

@@ -5,10 +5,10 @@ import java.util.List;
 public class FunctionSymbol extends Symbol {
     private  String returnType;
     private final SymbolType symbolType;
-    private  List<String> parameters;
+    private  List<VariableSymbol> parameters;
     private  String visibility;
 
-    public FunctionSymbol(String name, String returnType, List<String> parameters) {
+    public FunctionSymbol(String name, String returnType, List<VariableSymbol> parameters) {
         super(name);
         this.symbolType = SymbolType.FUNCTIONSYMBOL;
         this.returnType = returnType;
@@ -18,6 +18,7 @@ public class FunctionSymbol extends Symbol {
         super(name);
         this.symbolType = SymbolType.FUNCTIONSYMBOL;
     }
+
     public void setVisibility(String _visibility){
         visibility = _visibility;
     }
@@ -26,7 +27,7 @@ public class FunctionSymbol extends Symbol {
         return returnType;
     }
 
-    public List<String> getParameters() {
+    public List<VariableSymbol> getParameters() {
         return parameters;
     }
 
@@ -42,6 +43,18 @@ public class FunctionSymbol extends Symbol {
         }
         sb.append(")");
         return sb.toString();
+    }
+    public String getVisibilityIcon(){
+        switch (visibility){
+            case "public":
+                return "+";
+            case "private":
+                return "-";
+            case "protected":
+                return "~";
+            default:
+                return " ";
+        }
     }
 }
 

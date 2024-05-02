@@ -15,7 +15,7 @@ import static junit.framework.TestCase.assertTrue;
 public class TestFiles {
     @Test
     public void GrammarCheck(){
-       /* Functions4use f = new Functions4use();
+       /* Main.Functions4use f = new Main.Functions4use();
        File file = new File("for4tests.txt");
         ClassDiagramParser.ProgramContext context = f.ReadAST(file);*/
        int a = 2;
