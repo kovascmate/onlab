@@ -1,4 +1,4 @@
-// Generated from C:/Users/kmate/Desktop/6. felev/Onlab/onlab/src/ClassDiagram.g4 by ANTLR 4.13.1
+// Generated from C:/Users/kmate/Desktop/6. felev/Onlab/onlab/src/ANTLR/ClassDiagram.g4 by ANTLR 4.13.1
 package generated;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -257,6 +257,16 @@ public interface ClassDiagramListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitVariable_name(ClassDiagramParser.Variable_nameContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ClassDiagramParser#variable_type}.
+	 * @param ctx the parse tree
+	 */
+	void enterVariable_type(ClassDiagramParser.Variable_typeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ClassDiagramParser#variable_type}.
+	 * @param ctx the parse tree
+	 */
+	void exitVariable_type(ClassDiagramParser.Variable_typeContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ClassDiagramParser#return_state}.
 	 * @param ctx the parse tree

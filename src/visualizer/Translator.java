@@ -142,7 +142,19 @@ public class Translator {
         }
         @Override
         public String getVizString(){
-            return "";
+            String ret = "";
+            if(connectionType == "inheritance"){
+                ret = ret.concat("\n edge [\n" +"                arrowhead = \"empty\"\n" +"     ]");
+                ret = ret.concat(objects.get(0).getName()+"->"+objects.get(1).getName());
+            } else if (connectionType == "implementation") {
+                ret = ret.concat("\n edge [\n" +"                arrowhead = \"empty\"\n" +" style=dashed        ]");
+                ret = ret.concat(objects.get(0).getName()+"->"+objects.get(1).getName());
+            }
+            return ret;
+        }
+        @Override
+        public String getName() {
+            return null;
         }
     }
     public class VizEnum extends VizObject{
@@ -155,6 +167,10 @@ public class Translator {
         @Override
         public String getVizString(){
             return "";
+        }
+        @Override
+        public String getName() {
+            return name;
         }
 
     }
@@ -184,6 +200,10 @@ public class Translator {
             interfaceString = interfaceString.concat("\n}\"]");
             return interfaceString;
         }
+        @Override
+        public String getName() {
+            return name;
+        }
     }
     public class VizClass extends VizObject{
         private String name;
@@ -211,6 +231,11 @@ public class Translator {
             classString = classString.concat("\n}\"]");
             return classString;
         }
+
+        @Override
+        public String getName() {
+            return name;
+        }
     }
     public class VizVariable{
         private String visibility;
@@ -222,7 +247,7 @@ public class Translator {
             name = _name;
         }
         public String getVizString(){
-            String ret = visibility+" "+name+" : "+type+"\1";
+            String ret = visibility+" "+name+" : "+type+"\\n";
             return ret;
         }
     }
@@ -238,7 +263,7 @@ public class Translator {
             parameters = _parameters;
         }
         public String getVizString(){
-            String ret = visibility+" "+name+"() :"+returnType+"\1";
+            String ret = visibility+" "+name+"() :"+returnType+"\\n";
             return  ret;
         }
 
@@ -249,5 +274,6 @@ public class Translator {
         }
 
         public abstract String getVizString();
+        public abstract String getName();
     }
 }

@@ -1,10 +1,13 @@
-// Generated from C:/Users/kmate/Desktop/6. felev/Onlab/onlab/src/ClassDiagram.g4 by ANTLR 4.13.1
+// Generated from C:/Users/kmate/Desktop/6. felev/Onlab/onlab/src/ANTLR/ClassDiagram.g4 by ANTLR 4.13.1
 package generated;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.TokenStream;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
+import org.antlr.v4.runtime.misc.*;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast", "CheckReturnValue", "this-escape"})
 public class ClassDiagramLexer extends Lexer {
@@ -96,7 +99,7 @@ public class ClassDiagramLexer extends Lexer {
 	}
 
 	@Override
-	public String getGrammarFileName() { return "ANTLR/ClassDiagram.g4"; }
+	public String getGrammarFileName() { return "ClassDiagram.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }

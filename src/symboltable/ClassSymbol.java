@@ -1,5 +1,6 @@
 package symboltable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ClassSymbol extends  Symbol {
@@ -20,6 +21,8 @@ public class ClassSymbol extends  Symbol {
     public ClassSymbol(String _name){
         super(_name);
         symbolType = SymbolType.CLASSSYMBOL;
+        functions_symbol = new ArrayList<>();
+        variables_symbol = new ArrayList<>();
 
     }
     public String getInterface(){

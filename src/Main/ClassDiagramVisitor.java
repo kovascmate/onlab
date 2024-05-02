@@ -6,6 +6,7 @@ import generated.ClassDiagramBaseVisitor;
 import generated.ClassDiagramParser;
 import symboltable.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 //Szemantikai elemzés
@@ -51,6 +52,16 @@ public class ClassDiagramVisitor extends ClassDiagramBaseVisitor<Object> {
         if(_context.class_def().interface_name() != null) {
             classSymbol.addImplementedInterface(_context.class_def().interface_name().getText());
         }
+        if(_context.functions() != null){
+            for(ClassDiagramParser.FunctionContext fcxt : _context.functions().function()){
+                classSymbol.addFunction(visitFunction(fcxt));
+            }
+        }
+        if(_context.variables() != null){
+            for(ClassDiagramParser.VariableContext vcxt : _context.variables().variable()){
+                classSymbol.addVariable(visitVariable(vcxt));
+            }
+        }
         typeSystem.add(class_name,classSymbol);
         return null;
     }
@@ -58,6 +69,16 @@ public class ClassDiagramVisitor extends ClassDiagramBaseVisitor<Object> {
     public Object visitInterface(ClassDiagramParser.InterfaceContext _context){
         var interface_name = _context.interface_def().interface_name().getText();
         InterfaceSymbol interfaceSymbol = new InterfaceSymbol(interface_name);
+        if(_context.functions() != null){
+            for(ClassDiagramParser.FunctionContext fcxt : _context.functions().function()){
+                interfaceSymbol.addFunction(visitFunction(fcxt));
+            }
+        }
+        if(_context.variables() != null){
+            for(ClassDiagramParser.VariableContext vcxt : _context.variables().variable()){
+                interfaceSymbol.addVariable(visitVariable(vcxt));
+            }
+        }
         typeSystem.add(interface_name,interfaceSymbol);
         return null;
     }
@@ -80,11 +101,20 @@ public class ClassDiagramVisitor extends ClassDiagramBaseVisitor<Object> {
         typeSystem.add(import_def_name,importSymbol);
         return null;
     }
-    public Object visitFunction(ClassDiagramParser.FunctionContext _context){
-        var function_name = _context.function_name().getText();
-        FunctionSymbol functionSymbol = new FunctionSymbol(function_name);
+    public FunctionSymbol visitFunction(ClassDiagramParser.FunctionContext _context){
+        String function_name = _context.function_name().getText();
+        String function_visibility = _context.VISIBILITY().getText();
+        List<VariableSymbol> parameters = new ArrayList<>();
+        String function_return = new String();
+        if(_context.return_state() != null){
+         function_return = _context.return_state().getText();
+        } else  {
+            function_return = "void";
+        }
+
+        FunctionSymbol functionSymbol = new FunctionSymbol(function_name,function_return,parameters,function_visibility);
         typeSystem.add(function_name,functionSymbol);
-        return null;
+        return functionSymbol;
     }
     public Object visitConnection(ClassDiagramParser.ConnectionsContext _context){
         return null;
@@ -92,9 +122,25 @@ public class ClassDiagramVisitor extends ClassDiagramBaseVisitor<Object> {
     public Object visitEnum(ClassDiagramParser.EnumerationContext _context){
         return null;
     }
-    public Object visitVariable(ClassDiagramParser.VariableContext _context){
-
-        return null;
+    public VariableSymbol visitVariable(ClassDiagramParser.VariableContext _context){
+        String var_name = "";
+        String type = "";
+        String visibility = "";
+           if (_context.boolean_variable() != null){
+               var_name = _context.boolean_variable().variable_name().getText();
+               type = "boolean";
+               visibility =  _context.boolean_variable().VISIBILITY().getText();
+           }else if(_context.string_variable() != null){
+               var_name = _context.string_variable().variable_name().getText();
+               type ="string";
+               visibility =  _context.string_variable().VISIBILITY().getText();
+           }else if(_context.int_variable() != null){
+               var_name = _context.int_variable().variable_name().getText();
+               type = "int";
+               visibility =  _context.int_variable().VISIBILITY().getText();
+           }
+           VariableSymbol sym = new VariableSymbol(var_name,type,visibility);
+        return sym;
     }
 }
 

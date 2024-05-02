@@ -1,4 +1,4 @@
-// Generated from C:/Users/kmate/Desktop/6. felev/Onlab/onlab/src/ClassDiagram.g4 by ANTLR 4.13.1
+// Generated from C:/Users/kmate/Desktop/6. felev/Onlab/onlab/src/ANTLR/ClassDiagram.g4 by ANTLR 4.13.1
 package generated;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -160,6 +160,12 @@ public interface ClassDiagramVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitVariable_name(ClassDiagramParser.Variable_nameContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ClassDiagramParser#variable_type}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVariable_type(ClassDiagramParser.Variable_typeContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link ClassDiagramParser#return_state}.
 	 * @param ctx the parse tree

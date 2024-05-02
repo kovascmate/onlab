@@ -1,5 +1,6 @@
 package symboltable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FunctionSymbol extends Symbol {
@@ -8,14 +9,18 @@ public class FunctionSymbol extends Symbol {
     private  List<VariableSymbol> parameters;
     private  String visibility;
 
-    public FunctionSymbol(String name, String returnType, List<VariableSymbol> parameters) {
-        super(name);
+    public FunctionSymbol(String  _name, String _returnType, List<VariableSymbol> _parameters,String _visibility) {
+        super(_name);
         this.symbolType = SymbolType.FUNCTIONSYMBOL;
-        this.returnType = returnType;
-        this.parameters = parameters;
+        this.returnType = _returnType;
+        this.parameters = _parameters;
+        this.visibility = _visibility;
     }
     public FunctionSymbol(String name){
         super(name);
+        this.returnType = "returnType";
+        this.parameters = new ArrayList<>();
+        this.visibility = "public";
         this.symbolType = SymbolType.FUNCTIONSYMBOL;
     }
 

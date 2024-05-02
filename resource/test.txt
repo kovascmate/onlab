@@ -17,7 +17,7 @@ public class Vehicle{
 	public void break(){
 	}
 }
-public class Car extends Vehicle{
+public class Bicyle extends Vehicle{
 	public int trunkSize;
 	
 }

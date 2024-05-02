@@ -62,7 +62,7 @@ import_def_name
     : QualifiedImportName
     ;
 parameter_list
-    : (variable_name parameter_name)*
+    : (variable_type parameter_name)*
     ;
 parameter_name
     :IDENTIFIER
@@ -97,7 +97,7 @@ function
             IDENTIFIER*
              '}')
              |
-            (variable_name function_name '(' parameter_list ')'
+            (variable_type function_name '(' parameter_list ')'
             '{'
             variables
             IDENTIFIER* 
@@ -111,7 +111,7 @@ function_name
 string_variable
     : VISIBILITY?
     'string'
-    IDENTIFIER
+    variable_name
     ('=' '"' IDENTIFIER '"')?
     ';'
     ;
@@ -119,7 +119,7 @@ string_variable
 int_variable
     : VISIBILITY?
     'int'
-    IDENTIFIER
+    variable_name
      ('=' NUMBERS)?
      ';'
      ;
@@ -128,11 +128,16 @@ boolean_variable
     :
     VISIBILITY?
     'boolean'
-    IDENTIFIER
+    variable_name
     ('=' ('true'| 'false') )?
     ';'
     ;
+
 variable_name
+    :IDENTIFIER
+    ;
+
+variable_type
     : 'int'
     | 'boolean'
     | 'string'
