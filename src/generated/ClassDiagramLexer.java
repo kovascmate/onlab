@@ -1,4 +1,4 @@
-// Generated from C:/Users/kmate/Desktop/6. felev/Onlab/onlab/src/ClassDiagram.g4 by ANTLR 4.13.1
+// Generated from C:/Users/kmate/Desktop/6. felev/Onlab/onlab/src/ANTLR/ClassDiagram.g4 by ANTLR 4.13.1
 package generated;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;

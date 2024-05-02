@@ -5,27 +5,27 @@ import circuit_element.Circuit_Element;
 import file_management.File_management;
 import table.Table;
 
-import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+public class Vehicle{
+	public int horsepower;
+	private string licensPlate;
+	
 
-public interface Polygon implements Cube
-{
-
-}
-
-
-public class Frame implements Polygon
-{
-	public void init(int a)
-	{
-	    string a = "kisauto";
+	public void gas(){
 	}
-	public string doubleValue(int value){
-	    string ret = "asd";
-	    return ret;
+	private void repair(){
+	}
+	public void break(){
 	}
 }
-
-public class Object extends Frame{
+public class Bicyle extends Vehicle{
+	public int trunkSize;
+	
 }
+
+public class Truck extends Vehicle implements ProfessionalThing{
+
+}
+public interface ProfessionalThing{
+	private int id;
+}
+

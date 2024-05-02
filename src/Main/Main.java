@@ -1,6 +1,9 @@
+package Main;
+
 import TypeSystem.TypeSystem;
 import exceptition.ClassDiagramExceptionHandler;
 import generated.ClassDiagramParser;
+import visualizer.Translator;
 
 import javax.swing.*;
 import java.io.File;
@@ -9,6 +12,7 @@ import java.io.File;
 public class Main {
 
     public static void main(String[] args) throws Exception {
+        Translator t = new Translator();
         TypeSystem typeSystem = new TypeSystem();
         ClassDiagramExceptionHandler exceptionHandler = new ClassDiagramExceptionHandler();
         ClassDiagramVisitor visitor = new ClassDiagramVisitor(exceptionHandler,typeSystem);
@@ -24,7 +28,8 @@ public class Main {
 
             visitor.visitProgram(context);
             semanticAnalyzer.SemanticAnalyze();
-
+            t.fillVizObjects(typeSystem.getHashMap());
+            t.fillString();
             int asd = 2;
         } else {
             System.out.println("Nincs fájl kiválasztva.");

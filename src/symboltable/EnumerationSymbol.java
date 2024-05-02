@@ -38,5 +38,6 @@ public class EnumerationSymbol extends  Symbol {
         sb.append("}");
         return sb.toString();
     }
+
 }
 
