@@ -22,7 +22,7 @@ public class Translator {
         } else {
             System.out.println("File already exists.");
         }
-        FileWriter myWriter = new FileWriter("graph_viz.txt");
+        FileWriter myWriter = new FileWriter("graph_viz.dot");
         myWriter.write(input);
         myWriter.close();
     }
@@ -41,14 +41,14 @@ public class Translator {
         writeFile();
     }
     public void writeFile() throws IOException {
-        File myObj = new File("graph_viz.txt");
+        File myObj = new File("graph_viz.dot");
         if (myObj.createNewFile()) {
             System.out.println("File created: " + myObj.getName());
 
         } else {
             System.out.println("File already exists.");
         }
-        FileWriter myWriter = new FileWriter("graph_viz.txt");
+        FileWriter myWriter = new FileWriter("graph_viz.dot");
         myWriter.write(input);
         myWriter.close();
     }

@@ -15,7 +15,6 @@ import java.io.InputStreamReader;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-       // doTheMagic();
         //  Instantiation of the Translator class, which convert the symboltable into graphViz format code
         Translator translator = new Translator();
 
@@ -40,43 +39,11 @@ public class Main {
         } else {
             System.out.println("Nincs fájl kiválasztva.");
         }
-       // Process process = Runtime.getRuntime().exec("dot -Tsvg graph_viz.dot > output.svg");
         doTheMagic();
     }
 
-
-    public void Visitor(ClassDiagramParser.ProgramContext _context) throws IOException {
-
-       // Process process = Runtime.getRuntime().exec("dot -Tsvg graph_viz.dot > output.svg");
-
-    }
     public static void doTheMagic() throws IOException {
-        String path = Functions4use.readFile(new File("folder_path.txt"));
-//        System.out.println(path);
-//        ProcessBuilder processBuilder = new ProcessBuilder();
-     //   processBuilder.directory(new File(path));
-//        processBuilder.command("dot -Tsvg "+path+"\\graph_viz.dot >"+path+"\\output.svg");
-//        Process process = Runtime.getRuntime().exec("dot -Tsvg "+path+"\\graph_viz.dot >"+path+"\\output.svg");
-//        Process process = Runtime.getRuntime().exec("cmd.exe");
-//        ProcessBuilder builder = new ProcessBuilder("cmd.exe");
-//        Process process = processBuilder.start();
-        //Process process = Runtime.getRuntime().exec("cd " + path +"\n"+"dot -Tsvg graph_viz.dot > output.svg");
-
-
-
-        ProcessBuilder builder = new ProcessBuilder(
-                "cmd.exe", "/c", "dot -Tsvg graph_viz.dot > output.svg && output.svg");
-//                "cd \"C:\\Users\\kmate\\Desktop\\6. felev\\Onlab\\onlab\" && ");
-
-        builder.redirectErrorStream(true);
+        ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", "dot -Tsvg graph_viz.dot > output.svg && output.svg");
         Process p = builder.start();
-        BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
-        String line;
-        while (true) {
-            line = r.readLine();
-            if (line == null) { break; }
-            System.out.println(line);
-        }
-
     }
 }
