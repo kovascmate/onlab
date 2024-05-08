@@ -15,7 +15,7 @@ public class Translator {
     String input = "";
     public Translator() throws IOException {
         objects = new ArrayList<>();
-        File myObj = new File("graph_viz.txt");
+        File myObj = new File("graph_viz.dot");
         if (myObj.createNewFile()) {
             System.out.println("File created: " + myObj.getName());
 
@@ -144,10 +144,10 @@ public class Translator {
         public String getVizString(){
             String ret = "";
             if(connectionType == "inheritance"){
-                ret = ret.concat("\n edge [\n" +"                arrowhead = \"empty\"\n" +"     ]");
+                ret = ret.concat("\nedge [\n" +"\tarrowhead = \"empty\"\n\t]\n");
                 ret = ret.concat(objects.get(0).getName()+"->"+objects.get(1).getName());
             } else if (connectionType == "implementation") {
-                ret = ret.concat("\n edge [\n" +"                arrowhead = \"empty\"\n" +" style=dashed        ]");
+                ret = ret.concat("\nedge [\n" +"\tarrowhead = \"empty\"" +" style=dashed\n\t]\n");
                 ret = ret.concat(objects.get(0).getName()+"->"+objects.get(1).getName());
             }
             return ret;
@@ -193,11 +193,11 @@ public class Translator {
             for(VizFunction vizFunction:  vizFunctions){
                 functionString = functionString.concat(vizFunction.getVizString());
             }
-            String interfaceString = name + "[\n"
-                    +"label = \"{"+name+"|";
+            String interfaceString ="\n"+ name + "[ "
+                    +"label = \"{"+"« "+name+" »"+"|";
             interfaceString = interfaceString.concat(variableString);
             interfaceString = interfaceString.concat(functionString);
-            interfaceString = interfaceString.concat("\n}\"]");
+            interfaceString = interfaceString.concat(" }\"]");
             return interfaceString;
         }
         @Override
@@ -224,11 +224,11 @@ public class Translator {
             for(VizFunction vizFunction:  vizFunctions){
                 functionString = functionString.concat(vizFunction.getVizString());
             }
-            String classString = "\n"+name + " [\n"
+            String classString = "\n"+name + " [ "
                                     +"label = \"{"+name+"|";
             classString = classString.concat(variableString);
             classString = classString.concat(functionString);
-            classString = classString.concat("\n}\"]");
+            classString = classString.concat(" }\"]");
             return classString;
         }
 
