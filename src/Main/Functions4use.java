@@ -20,7 +20,7 @@ public class Functions4use {
         ClassDiagramParser.ProgramContext context     = parser.program();
         return  context;
     }
-    private static String readFile(File file) {
+    public static String readFile(File file) {
         StringBuilder content = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line;
