@@ -151,8 +151,12 @@ return_state
     ;
 
 connections
+    :connection*
+    ;
+
+connection
     : (aggregation
-    | association)*
+    | association)
     ;
 
 enumeration

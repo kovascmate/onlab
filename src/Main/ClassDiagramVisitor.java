@@ -62,6 +62,11 @@ public class ClassDiagramVisitor extends ClassDiagramBaseVisitor<Object> {
                 classSymbol.addVariable(visitVariable(vcxt));
             }
         }
+        if(_context.connections() != null){
+            for(ClassDiagramParser.ConnectionContext ccxt : _context.connections().connection()){
+                classSymbol.addConnection(visitConnection(ccxt));
+            }
+        }
         typeSystem.add(class_name,classSymbol);
         return null;
     }
@@ -77,6 +82,11 @@ public class ClassDiagramVisitor extends ClassDiagramBaseVisitor<Object> {
         if(_context.variables() != null){
             for(ClassDiagramParser.VariableContext vcxt : _context.variables().variable()){
                 interfaceSymbol.addVariable(visitVariable(vcxt));
+            }
+        }
+        if(_context.connections() != null){
+            for(ClassDiagramParser.ConnectionContext ccxt : _context.connections().connection()){
+                interfaceSymbol.addConnection(visitConnection(ccxt));
             }
         }
         typeSystem.add(interface_name,interfaceSymbol);
@@ -100,6 +110,22 @@ public class ClassDiagramVisitor extends ClassDiagramBaseVisitor<Object> {
         ImportSymbol importSymbol = new ImportSymbol(import_def_name);
         typeSystem.add(import_def_name,importSymbol);
         return null;
+    }
+    public ConnectionSymbol visitConnection(ClassDiagramParser.ConnectionContext _context){
+        String name = "",class_name = "", connection_type = "",visibility;
+       if(_context.aggregation() != null){
+             class_name = _context.aggregation().CLASS_NAME().getText();
+            connection_type = "aggregation";
+            name = _context.aggregation().IDENTIFIER().getText();
+
+       } else if (_context.association() != null) {
+           class_name = _context.association().CLASS_NAME().getText();
+           connection_type = "association";
+           name = _context.association().IDENTIFIER().getText();
+       }
+       ConnectionSymbol connectionSymbol = new ConnectionSymbol(name,connection_type,class_name,"public");
+       typeSystem.add(name, connectionSymbol);
+       return connectionSymbol;
     }
     public FunctionSymbol visitFunction(ClassDiagramParser.FunctionContext _context){
         String function_name = _context.function_name().getText();

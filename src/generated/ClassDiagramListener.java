@@ -1,4 +1,4 @@
-// Generated from C:/Users/kmate/Desktop/6. felev/Onlab/onlab/src/ANTLR/ClassDiagram.g4 by ANTLR 4.13.1
+// Generated from C:/Users/kmate/Desktop/asd/onlab/src/ANTLR/ClassDiagram.g4 by ANTLR 4.13.1
 package generated;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -287,6 +287,16 @@ public interface ClassDiagramListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitConnections(ClassDiagramParser.ConnectionsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ClassDiagramParser#connection}.
+	 * @param ctx the parse tree
+	 */
+	void enterConnection(ClassDiagramParser.ConnectionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ClassDiagramParser#connection}.
+	 * @param ctx the parse tree
+	 */
+	void exitConnection(ClassDiagramParser.ConnectionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ClassDiagramParser#enumeration}.
 	 * @param ctx the parse tree

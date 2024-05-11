@@ -1,4 +1,4 @@
-// Generated from C:/Users/kmate/Desktop/6. felev/Onlab/onlab/src/ANTLR/ClassDiagram.g4 by ANTLR 4.13.1
+// Generated from C:/Users/kmate/Desktop/asd/onlab/src/ANTLR/ClassDiagram.g4 by ANTLR 4.13.1
 package generated;
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -348,6 +348,18 @@ public class ClassDiagramBaseListener implements ClassDiagramListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitConnections(ClassDiagramParser.ConnectionsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterConnection(ClassDiagramParser.ConnectionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitConnection(ClassDiagramParser.ConnectionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
