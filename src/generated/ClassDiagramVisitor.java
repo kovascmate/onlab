@@ -1,4 +1,4 @@
-// Generated from C:/Users/kmate/Desktop/6. felev/Onlab/onlab/src/ANTLR/ClassDiagram.g4 by ANTLR 4.13.1
+// Generated from C:/Users/kmate/Desktop/asd/onlab/src/ANTLR/ClassDiagram.g4 by ANTLR 4.13.1
 package generated;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -179,6 +179,12 @@ public interface ClassDiagramVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitConnections(ClassDiagramParser.ConnectionsContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link ClassDiagramParser#connection}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitConnection(ClassDiagramParser.ConnectionContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link ClassDiagramParser#enumeration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -197,9 +203,9 @@ public interface ClassDiagramVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAggregation(ClassDiagramParser.AggregationContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ClassDiagramParser#association}.
+	 * Visit a parse tree produced by {@link ClassDiagramParser#composition}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitAssociation(ClassDiagramParser.AssociationContext ctx);
+	T visitComposition(ClassDiagramParser.CompositionContext ctx);
 }

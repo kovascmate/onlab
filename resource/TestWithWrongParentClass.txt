@@ -13,6 +13,9 @@ public interface Polygon implements Cube
 {
 
 }
+public interface Cube{
+
+}
 
 
 public class Frame extends ListActivity implements Polygon

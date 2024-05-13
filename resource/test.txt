@@ -5,7 +5,12 @@ import circuit_element.Circuit_Element;
 import file_management.File_management;
 import table.Table;
 
+public class Tier{
+    public int size;
+}
+
 public class Vehicle{
+
 	public int horsepower;
 	private string licensPlate;
 	
@@ -16,8 +21,10 @@ public class Vehicle{
 	}
 	public void break(){
 	}
+	public aggregation Tier : kerek;
+
 }
-public class Bicyle extends Vehicle{
+public class Bicycle extends Vehicle{
 	public int trunkSize;
 	
 }

@@ -1,4 +1,4 @@
-// Generated from C:/Users/kmate/Desktop/6. felev/Onlab/onlab/src/ANTLR/ClassDiagram.g4 by ANTLR 4.13.1
+// Generated from C:/Users/kmate/Desktop/asd/onlab/src/ANTLR/ClassDiagram.g4 by ANTLR 4.13.1
 package generated;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -288,6 +288,16 @@ public interface ClassDiagramListener extends ParseTreeListener {
 	 */
 	void exitConnections(ClassDiagramParser.ConnectionsContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link ClassDiagramParser#connection}.
+	 * @param ctx the parse tree
+	 */
+	void enterConnection(ClassDiagramParser.ConnectionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ClassDiagramParser#connection}.
+	 * @param ctx the parse tree
+	 */
+	void exitConnection(ClassDiagramParser.ConnectionContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link ClassDiagramParser#enumeration}.
 	 * @param ctx the parse tree
 	 */
@@ -318,13 +328,13 @@ public interface ClassDiagramListener extends ParseTreeListener {
 	 */
 	void exitAggregation(ClassDiagramParser.AggregationContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ClassDiagramParser#association}.
+	 * Enter a parse tree produced by {@link ClassDiagramParser#composition}.
 	 * @param ctx the parse tree
 	 */
-	void enterAssociation(ClassDiagramParser.AssociationContext ctx);
+	void enterComposition(ClassDiagramParser.CompositionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link ClassDiagramParser#association}.
+	 * Exit a parse tree produced by {@link ClassDiagramParser#composition}.
 	 * @param ctx the parse tree
 	 */
-	void exitAssociation(ClassDiagramParser.AssociationContext ctx);
+	void exitComposition(ClassDiagramParser.CompositionContext ctx);
 }

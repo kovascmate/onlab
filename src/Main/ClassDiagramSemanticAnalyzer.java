@@ -18,6 +18,7 @@ public class ClassDiagramSemanticAnalyzer extends ClassDiagramBaseVisitor<Object
       public Object SemanticAnalyze() {
           checkParentClassExsistence();
           checkInterfaceExsistence();
+          checkOwnParentClass();
           return  null;
       }
       public Object checkParentClassExsistence() {
@@ -44,6 +45,23 @@ public class ClassDiagramSemanticAnalyzer extends ClassDiagramBaseVisitor<Object
             if(implementedInterface != null){
                 if(!typeSystem.containsKey(implementedInterface)){
                     String exception_title ="No interface as :"+implementedInterface +" in the scope!";
+                    try {
+                        throw new Exception(exception_title);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        }
+        return null;
+    }
+    public Object checkOwnParentClass(){
+        List<ClassSymbol> list = typeSystem.getClasses();
+        for(ClassSymbol sym : list){
+            String parentClass = sym.getParantClass();
+            if(parentClass != null){
+                if(parentClass.equals(sym.getName())){
+                    String exception_title = "The class is its own parent class: "+sym.getClass()+" !";
                     try {
                         throw new Exception(exception_title);
                     } catch (Exception e) {

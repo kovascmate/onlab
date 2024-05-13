@@ -13,6 +13,7 @@ public class ClassSymbol extends  Symbol {
 
     public List<VariableSymbol> variables_symbol;
     public List<FunctionSymbol> functions_symbol;
+    public List<ConnectionSymbol> connections_symbol;
 
 
 
@@ -23,6 +24,7 @@ public class ClassSymbol extends  Symbol {
         symbolType = SymbolType.CLASSSYMBOL;
         functions_symbol = new ArrayList<>();
         variables_symbol = new ArrayList<>();
+        connections_symbol = new ArrayList<>();
 
     }
     public String getInterface(){
@@ -43,6 +45,12 @@ public class ClassSymbol extends  Symbol {
     public List<FunctionSymbol> getFunctionsSymbols(){
         return functions_symbol;
     }
+    public List<ConnectionSymbol> getConnectionsSymbols(){
+        if(connections_symbol.isEmpty()){
+            return null;
+        }
+        return connections_symbol;
+    }
 
 
     public boolean addVariable(VariableSymbol _variable_symbol){
@@ -60,6 +68,14 @@ public class ClassSymbol extends  Symbol {
         }
         functions_symbol.add(_function_symbol);
         return false;
+    }
+    public boolean addConnection(ConnectionSymbol _connection_symbol){
+        if(connections_symbol.contains(_connection_symbol)){
+            System.out.println(_connection_symbol.getName()+" already in the list");
+            return true;
+        }
+        connections_symbol.add(_connection_symbol);
+        return  false;
     }
 
 }

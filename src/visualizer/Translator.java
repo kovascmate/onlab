@@ -27,7 +27,7 @@ public class Translator {
         myWriter.close();
     }
     public void fillString() throws IOException {
-        input = input.concat("digraph G {\n" +
+        input = input.concat("digraph ClassDiagram {\n" +
                 "        node [\n" +
                 "                shape = \"record\"\n" +
                 "        ]\n" +
@@ -75,6 +75,7 @@ public class Translator {
                     }
 
                 }
+
                 VizClass vizClass = new VizClass(sym.getName(), vizVarList, vizFunList);
                 objects.add(vizClass);
                 list.put(vizClass,sym);
@@ -129,6 +130,19 @@ public class Translator {
 
                     objects.add(new VizConnection(connectionObject,"implementation"));
                 }
+                if(((ClassSymbol) sym).getConnectionsSymbols() != null ){
+                    String conType ;
+                    for(ConnectionSymbol consym : ((ClassSymbol) sym).getConnectionsSymbols()){
+                        connectionObject = new ArrayList<>();
+
+
+                        connectionObject.add(keyList.get(sym.getName()));
+                        String symString = (consym.getClassName());
+                        connectionObject.add(keyList.get(symString));
+                        conType = consym.getConnectionType();
+                        objects.add(new VizConnection(connectionObject,conType));
+                    }
+                }
             }
         }
     }
@@ -149,6 +163,12 @@ public class Translator {
             } else if (connectionType == "implementation") {
                 ret = ret.concat("\nedge [\n" +"\tarrowhead = \"empty\"" +" style=dashed\n\t]\n");
                 ret = ret.concat(objects.get(0).getName()+"->"+objects.get(1).getName());
+            }else if (connectionType == "aggregation"){
+                ret = ret.concat("\nedge [\n" +"\tarrowhead = \"odiamond\"" +" style = filled\n\t]\n");
+                ret = ret.concat(objects.get(1).getName()+"->"+objects.get(0).getName());
+            } else if (connectionType == "composition") {
+                ret = ret.concat("\nedge [\n" +"\tarrowhead = \"diamond\"" +"  style = filled\n\t]\n");
+                ret = ret.concat(objects.get(1).getName()+"->"+objects.get(0).getName());
             }
             return ret;
         }

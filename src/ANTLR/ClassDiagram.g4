@@ -151,8 +151,12 @@ return_state
     ;
 
 connections
+    :connection*
+    ;
+
+connection
     : (aggregation
-    | association)*
+    | composition)
     ;
 
 enumeration
@@ -179,10 +183,10 @@ aggregation
     IDENTIFIER
     ';'
     ;
-association
+composition
     :
     VISIBILITY?
-    'association'
+    'composition'
     CLASS_NAME
     ':'
     IDENTIFIER

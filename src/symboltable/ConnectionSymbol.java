@@ -4,11 +4,14 @@ public class ConnectionSymbol extends  Symbol{
     private final String connectionType; // A kapcsolat típusa (összetétel, asszociáció stb.)
     private final SymbolType symbolType;
     private final String className; // Az érintett osztály neve
+    private final String visibility;
 
-    public ConnectionSymbol(String connectionType, String className) {
+    public ConnectionSymbol(String _name,String connectionType, String className,String _visibility) {
+        super(_name);
         this.connectionType = connectionType;
         this.className = className;
         this.symbolType = SymbolType.CONNECTIONSYMBOL;
+        this.visibility = _visibility;
     }
 
     // A kapcsolat típusának lekérdezése
