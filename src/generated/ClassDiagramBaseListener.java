@@ -401,13 +401,13 @@ public class ClassDiagramBaseListener implements ClassDiagramListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAssociation(ClassDiagramParser.AssociationContext ctx) { }
+	@Override public void enterComposition(ClassDiagramParser.CompositionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAssociation(ClassDiagramParser.AssociationContext ctx) { }
+	@Override public void exitComposition(ClassDiagramParser.CompositionContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

@@ -118,10 +118,10 @@ public class ClassDiagramVisitor extends ClassDiagramBaseVisitor<Object> {
             connection_type = "aggregation";
             name = _context.aggregation().IDENTIFIER().getText();
 
-       } else if (_context.association() != null) {
-           class_name = _context.association().CLASS_NAME().getText();
-           connection_type = "association";
-           name = _context.association().IDENTIFIER().getText();
+       } else if (_context.composition() != null) {
+           class_name = _context.composition().CLASS_NAME().getText();
+           connection_type = "composition";
+           name = _context.composition().IDENTIFIER().getText();
        }
        ConnectionSymbol connectionSymbol = new ConnectionSymbol(name,connection_type,class_name,"public");
        typeSystem.add(name, connectionSymbol);
@@ -132,8 +132,8 @@ public class ClassDiagramVisitor extends ClassDiagramBaseVisitor<Object> {
         String function_visibility = _context.VISIBILITY().getText();
         List<VariableSymbol> parameters = new ArrayList<>();
         String function_return = new String();
-        if(_context.return_state() != null){
-         function_return = _context.return_state().getText();
+        if(_context.variable_type() != null){
+         function_return = _context.variable_type().getText();
         } else  {
             function_return = "void";
         }

@@ -166,7 +166,7 @@ public class Translator {
             }else if (connectionType == "aggregation"){
                 ret = ret.concat("\nedge [\n" +"\tarrowhead = \"odiamond\"" +" style = filled\n\t]\n");
                 ret = ret.concat(objects.get(1).getName()+"->"+objects.get(0).getName());
-            } else if (connectionType == "association") {
+            } else if (connectionType == "composition") {
                 ret = ret.concat("\nedge [\n" +"\tarrowhead = \"diamond\"" +"  style = filled\n\t]\n");
                 ret = ret.concat(objects.get(1).getName()+"->"+objects.get(0).getName());
             }

@@ -32,7 +32,7 @@ public class ClassDiagramParser extends Parser {
 		RULE_string_variable = 21, RULE_int_variable = 22, RULE_boolean_variable = 23, 
 		RULE_variable_name = 24, RULE_variable_type = 25, RULE_return_state = 26, 
 		RULE_connections = 27, RULE_connection = 28, RULE_enumeration = 29, RULE_enum_constants = 30, 
-		RULE_aggregation = 31, RULE_association = 32;
+		RULE_aggregation = 31, RULE_composition = 32;
 	private static String[] makeRuleNames() {
 		return new String[] {
 			"program", "imports", "class", "interface", "interface_def", "variables", 
@@ -41,7 +41,7 @@ public class ClassDiagramParser extends Parser {
 			"class_name", "extended_class_name", "interface_name", "function", "function_name", 
 			"string_variable", "int_variable", "boolean_variable", "variable_name", 
 			"variable_type", "return_state", "connections", "connection", "enumeration", 
-			"enum_constants", "aggregation", "association"
+			"enum_constants", "aggregation", "composition"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
@@ -51,7 +51,7 @@ public class ClassDiagramParser extends Parser {
 			null, "'{'", "'}'", "'implements'", "'interface'", "'package'", "';'", 
 			"'import'", "'class'", "'extends'", "'void'", "'('", "')'", "'string'", 
 			"'='", "'\"'", "'int'", "'boolean'", "'true'", "'false'", "'double'", 
-			"'return'", "'enum'", "','", "'aggregation'", "':'", "'association'"
+			"'return'", "'enum'", "','", "'aggregation'", "':'", "'composition'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
@@ -1913,8 +1913,8 @@ public class ClassDiagramParser extends Parser {
 		public AggregationContext aggregation() {
 			return getRuleContext(AggregationContext.class,0);
 		}
-		public AssociationContext association() {
-			return getRuleContext(AssociationContext.class,0);
+		public CompositionContext composition() {
+			return getRuleContext(CompositionContext.class,0);
 		}
 		public ConnectionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1953,7 +1953,7 @@ public class ClassDiagramParser extends Parser {
 			case 2:
 				{
 				setState(261);
-				association();
+				composition();
 				}
 				break;
 			}
@@ -2152,32 +2152,32 @@ public class ClassDiagramParser extends Parser {
 	}
 
 	@SuppressWarnings("CheckReturnValue")
-	public static class AssociationContext extends ParserRuleContext {
+	public static class CompositionContext extends ParserRuleContext {
 		public TerminalNode CLASS_NAME() { return getToken(ClassDiagramParser.CLASS_NAME, 0); }
 		public TerminalNode IDENTIFIER() { return getToken(ClassDiagramParser.IDENTIFIER, 0); }
 		public TerminalNode VISIBILITY() { return getToken(ClassDiagramParser.VISIBILITY, 0); }
-		public AssociationContext(ParserRuleContext parent, int invokingState) {
+		public CompositionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_association; }
+		@Override public int getRuleIndex() { return RULE_composition; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof ClassDiagramListener ) ((ClassDiagramListener)listener).enterAssociation(this);
+			if ( listener instanceof ClassDiagramListener ) ((ClassDiagramListener)listener).enterComposition(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof ClassDiagramListener ) ((ClassDiagramListener)listener).exitAssociation(this);
+			if ( listener instanceof ClassDiagramListener ) ((ClassDiagramListener)listener).exitComposition(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ClassDiagramVisitor ) return ((ClassDiagramVisitor<? extends T>)visitor).visitAssociation(this);
+			if ( visitor instanceof ClassDiagramVisitor ) return ((ClassDiagramVisitor<? extends T>)visitor).visitComposition(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final AssociationContext association() throws RecognitionException {
-		AssociationContext _localctx = new AssociationContext(_ctx, getState());
-		enterRule(_localctx, 64, RULE_association);
+	public final CompositionContext composition() throws RecognitionException {
+		CompositionContext _localctx = new CompositionContext(_ctx, getState());
+		enterRule(_localctx, 64, RULE_composition);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);

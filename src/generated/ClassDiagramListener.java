@@ -328,13 +328,13 @@ public interface ClassDiagramListener extends ParseTreeListener {
 	 */
 	void exitAggregation(ClassDiagramParser.AggregationContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ClassDiagramParser#association}.
+	 * Enter a parse tree produced by {@link ClassDiagramParser#composition}.
 	 * @param ctx the parse tree
 	 */
-	void enterAssociation(ClassDiagramParser.AssociationContext ctx);
+	void enterComposition(ClassDiagramParser.CompositionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link ClassDiagramParser#association}.
+	 * Exit a parse tree produced by {@link ClassDiagramParser#composition}.
 	 * @param ctx the parse tree
 	 */
-	void exitAssociation(ClassDiagramParser.AssociationContext ctx);
+	void exitComposition(ClassDiagramParser.CompositionContext ctx);
 }

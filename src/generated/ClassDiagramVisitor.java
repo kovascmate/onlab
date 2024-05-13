@@ -203,9 +203,9 @@ public interface ClassDiagramVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAggregation(ClassDiagramParser.AggregationContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ClassDiagramParser#association}.
+	 * Visit a parse tree produced by {@link ClassDiagramParser#composition}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitAssociation(ClassDiagramParser.AssociationContext ctx);
+	T visitComposition(ClassDiagramParser.CompositionContext ctx);
 }

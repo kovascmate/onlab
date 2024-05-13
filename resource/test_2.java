@@ -34,7 +34,7 @@ class Patient extends Person implements Callable{
     public string printPatientInfo(){
     return null;
     }
-    public association Recipe : recipe;
+    public composition Recipe : recipe;
 }
 class Staff extends Person{
     public string joined;
@@ -89,7 +89,7 @@ class Tehnician extends Technical_Staff{
 
     }
     public int repairEquipment(){
-    return quantity;
+    return null;
     }
 }
 class Technologist extends Technical_Staff{

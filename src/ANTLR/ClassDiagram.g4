@@ -156,7 +156,7 @@ connections
 
 connection
     : (aggregation
-    | association)
+    | composition)
     ;
 
 enumeration
@@ -183,10 +183,10 @@ aggregation
     IDENTIFIER
     ';'
     ;
-association
+composition
     :
     VISIBILITY?
-    'association'
+    'composition'
     CLASS_NAME
     ':'
     IDENTIFIER

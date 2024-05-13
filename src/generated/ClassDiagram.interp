@@ -25,7 +25,7 @@ null
 ','
 'aggregation'
 ':'
-'association'
+'composition'
 null
 null
 null
@@ -103,7 +103,7 @@ connection
 enumeration
 enum_constants
 aggregation
-association
+composition
 
 
 atn:

@@ -46,7 +46,7 @@ public class ClassDiagramLexer extends Lexer {
 			null, "'{'", "'}'", "'implements'", "'interface'", "'package'", "';'", 
 			"'import'", "'class'", "'extends'", "'void'", "'('", "')'", "'string'", 
 			"'='", "'\"'", "'int'", "'boolean'", "'true'", "'false'", "'double'", 
-			"'return'", "'enum'", "','", "'aggregation'", "':'", "'association'"
+			"'return'", "'enum'", "','", "'aggregation'", "':'", "'composition'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
@@ -249,10 +249,10 @@ public class ClassDiagramLexer extends Lexer {
 		"\u00c2\u0005a\u0000\u0000\u00c2\u00c3\u0005t\u0000\u0000\u00c3\u00c4\u0005"+
 		"i\u0000\u0000\u00c4\u00c5\u0005o\u0000\u0000\u00c5\u00c6\u0005n\u0000"+
 		"\u0000\u00c60\u0001\u0000\u0000\u0000\u00c7\u00c8\u0005:\u0000\u0000\u00c8"+
-		"2\u0001\u0000\u0000\u0000\u00c9\u00ca\u0005a\u0000\u0000\u00ca\u00cb\u0005"+
-		"s\u0000\u0000\u00cb\u00cc\u0005s\u0000\u0000\u00cc\u00cd\u0005o\u0000"+
-		"\u0000\u00cd\u00ce\u0005c\u0000\u0000\u00ce\u00cf\u0005i\u0000\u0000\u00cf"+
-		"\u00d0\u0005a\u0000\u0000\u00d0\u00d1\u0005t\u0000\u0000\u00d1\u00d2\u0005"+
+		"2\u0001\u0000\u0000\u0000\u00c9\u00ca\u0005c\u0000\u0000\u00ca\u00cb\u0005"+
+		"o\u0000\u0000\u00cb\u00cc\u0005m\u0000\u0000\u00cc\u00cd\u0005p\u0000"+
+		"\u0000\u00cd\u00ce\u0005o\u0000\u0000\u00ce\u00cf\u0005s\u0000\u0000\u00cf"+
+		"\u00d0\u0005i\u0000\u0000\u00d0\u00d1\u0005t\u0000\u0000\u00d1\u00d2\u0005"+
 		"i\u0000\u0000\u00d2\u00d3\u0005o\u0000\u0000\u00d3\u00d4\u0005n\u0000"+
 		"\u0000\u00d44\u0001\u0000\u0000\u0000\u00d5\u00d7\u0007\u0000\u0000\u0000"+
 		"\u00d6\u00d5\u0001\u0000\u0000\u0000\u00d7\u00d8\u0001\u0000\u0000\u0000"+
