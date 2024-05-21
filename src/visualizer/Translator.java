@@ -119,7 +119,7 @@ public class Translator {
                     String symString = ((ClassSymbol) sym).getParantClass();
                     connectionObject.add(keyList.get(symString));
 
-                    objects.add(new VizConnection(connectionObject,"inheritance"));
+                    objects.add(new VizConnection(connectionObject,"inheritance",""));
                 }
                 if (((ClassSymbol) sym).getInterface() != null) {
                     connectionObject = new ArrayList<>();
@@ -128,19 +128,19 @@ public class Translator {
                     String symString = ((ClassSymbol) sym).getInterface();
                     connectionObject.add(keyList.get(symString));
 
-                    objects.add(new VizConnection(connectionObject,"implementation"));
+                    objects.add(new VizConnection(connectionObject,"implementation",""));
                 }
                 if(((ClassSymbol) sym).getConnectionsSymbols() != null ){
                     String conType ;
                     for(ConnectionSymbol consym : ((ClassSymbol) sym).getConnectionsSymbols()){
                         connectionObject = new ArrayList<>();
 
-
                         connectionObject.add(keyList.get(sym.getName()));
                         String symString = (consym.getClassName());
                         connectionObject.add(keyList.get(symString));
+                        String connectionName = consym.getConnectionName();
                         conType = consym.getConnectionType();
-                        objects.add(new VizConnection(connectionObject,conType));
+                        objects.add(new VizConnection(connectionObject,conType,connectionName));
                     }
                 }
             }
@@ -149,10 +149,15 @@ public class Translator {
 
     public class VizConnection extends  VizObject{
         public List<VizObject> objects;
+        public String connectionName;
         public String connectionType;
-        public  VizConnection(List<VizObject> _objects,String _connectionType){
+        public  VizConnection(List<VizObject> _objects,String _connectionType, String _connectionName){
+            connectionName = _connectionName;
             objects = _objects;
             connectionType = _connectionType;
+        }
+        public String getConnectionName(){
+            return connectionName;
         }
         @Override
         public String getVizString(){
@@ -160,14 +165,18 @@ public class Translator {
             if(connectionType == "inheritance"){
                 ret = ret.concat("\nedge [\n" +"\tarrowhead = \"empty\"\n\t]\n");
                 ret = ret.concat(objects.get(0).getName()+"->"+objects.get(1).getName());
+                ret = ret.concat("[xlabel=\" \"]");
             } else if (connectionType == "implementation") {
                 ret = ret.concat("\nedge [\n" +"\tarrowhead = \"empty\"" +" style=dashed\n\t]\n");
                 ret = ret.concat(objects.get(0).getName()+"->"+objects.get(1).getName());
+                ret = ret.concat("[xlabel=\" \"]");
             }else if (connectionType == "aggregation"){
                 ret = ret.concat("\nedge [\n" +"\tarrowhead = \"odiamond\"" +" style = filled\n\t]\n");
                 ret = ret.concat(objects.get(1).getName()+"->"+objects.get(0).getName());
+                ret = ret.concat("[xlabel=\""+connectionName+"\"]");
             } else if (connectionType == "composition") {
                 ret = ret.concat("\nedge [\n" +"\tarrowhead = \"diamond\"" +"  style = filled\n\t]\n");
+                ret = ret.concat("[xlabel=\""+connectionName+"\"]");
                 ret = ret.concat(objects.get(1).getName()+"->"+objects.get(0).getName());
             }
             return ret;
@@ -295,5 +304,7 @@ public class Translator {
 
         public abstract String getVizString();
         public abstract String getName();
+
+        public String getConnectionName() {return null;}
     }
 }

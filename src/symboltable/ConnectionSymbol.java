@@ -13,6 +13,9 @@ public class ConnectionSymbol extends  Symbol{
         this.symbolType = SymbolType.CONNECTIONSYMBOL;
         this.visibility = _visibility;
     }
+    public String getConnectionName(){
+        return getName();
+    }
 
     // A kapcsolat típusának lekérdezése
     public String getConnectionType() {
