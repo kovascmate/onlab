@@ -1,15 +1,15 @@
 package Main;
 
+import GUI.MainGUI;
 import TypeSystem.TypeSystem;
 import exceptition.ClassDiagramExceptionHandler;
 import generated.ClassDiagramParser;
 import visualizer.Translator;
 
 import javax.swing.*;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.concurrent.TimeUnit;
 
 
 public class Main {
@@ -18,6 +18,7 @@ public class Main {
         //  Instantiation of the Translator class, which convert the symboltable into graphViz format code
         Translator translator = new Translator();
 
+        MainGUI mainGUI = new MainGUI();
 
         TypeSystem typeSystem = new TypeSystem();
         ClassDiagramExceptionHandler exceptionHandler = new ClassDiagramExceptionHandler();
@@ -40,6 +41,9 @@ public class Main {
             System.out.println("Nincs fájl kiválasztva.");
         }
         doTheMagic();
+
+        TimeUnit.SECONDS.sleep(1);
+        mainGUI.loadSVGDocument("output.svg");
     }
 
     public static void doTheMagic() throws IOException {
