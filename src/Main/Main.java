@@ -18,9 +18,10 @@ public class Main {
         //  Instantiation of the Translator class, which convert the symboltable into graphViz format code
         Translator translator = new Translator();
 
-        MainGUI mainGUI = new MainGUI();
+
 
         TypeSystem typeSystem = new TypeSystem();
+        MainGUI mainGUI = new MainGUI(typeSystem);
         ClassDiagramExceptionHandler exceptionHandler = new ClassDiagramExceptionHandler();
         ClassDiagramVisitor visitor = new ClassDiagramVisitor(exceptionHandler,typeSystem);
         ClassDiagramSemanticAnalyzer semanticAnalyzer = new ClassDiagramSemanticAnalyzer(typeSystem,exceptionHandler);
@@ -42,12 +43,14 @@ public class Main {
         }
         doTheMagic();
 
+        mainGUI.refresh();
         TimeUnit.SECONDS.sleep(1);
         mainGUI.loadSVGDocument("output.svg");
     }
 
     public static void doTheMagic() throws IOException {
-        ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", "dot -Tsvg graph_viz.dot > output.svg && output.svg");
+       // ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", "dot -Tsvg graph_viz.dot > output.svg && output.svg");
+        ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", "dot -Tsvg graph_viz.dot > output.svg ");
         Process p = builder.start();
     }
 }
