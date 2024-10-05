@@ -21,7 +21,7 @@ public class VariableSymbol extends Symbol{
             case "private":
                 return "-";
             case "protected":
-                return "~";
+                return "#";
             default:
                 return " ";
         }

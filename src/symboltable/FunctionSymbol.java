@@ -56,7 +56,7 @@ public class FunctionSymbol extends Symbol {
             case "private":
                 return "-";
             case "protected":
-                return "~";
+                return "#";
             default:
                 return " ";
         }

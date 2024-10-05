@@ -1,15 +1,15 @@
 package Main;
 
+import GUI.MainGUI;
 import TypeSystem.TypeSystem;
 import exceptition.ClassDiagramExceptionHandler;
 import generated.ClassDiagramParser;
 import visualizer.Translator;
 
 import javax.swing.*;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.concurrent.TimeUnit;
 
 
 public class Main {
@@ -19,7 +19,9 @@ public class Main {
         Translator translator = new Translator();
 
 
+
         TypeSystem typeSystem = new TypeSystem();
+        MainGUI mainGUI = new MainGUI(typeSystem);
         ClassDiagramExceptionHandler exceptionHandler = new ClassDiagramExceptionHandler();
         ClassDiagramVisitor visitor = new ClassDiagramVisitor(exceptionHandler,typeSystem);
         ClassDiagramSemanticAnalyzer semanticAnalyzer = new ClassDiagramSemanticAnalyzer(typeSystem,exceptionHandler);
@@ -40,10 +42,15 @@ public class Main {
             System.out.println("Nincs fájl kiválasztva.");
         }
         doTheMagic();
+
+        mainGUI.refresh();
+        TimeUnit.SECONDS.sleep(1);
+        mainGUI.loadSVGDocument("output.svg");
     }
 
     public static void doTheMagic() throws IOException {
-        ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", "dot -Tsvg graph_viz.dot > output.svg && output.svg");
+       // ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", "dot -Tsvg graph_viz.dot > output.svg && output.svg");
+        ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", "dot -Tsvg graph_viz.dot > output.svg ");
         Process p = builder.start();
     }
 }
