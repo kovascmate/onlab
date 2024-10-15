@@ -49,6 +49,10 @@ public class FunctionSymbol extends Symbol {
         sb.append(")");
         return sb.toString();
     }
+
+    public String getVisibility(){
+        return visibility;
+    }
     public String getVisibilityIcon(){
         switch (visibility){
             case "public":

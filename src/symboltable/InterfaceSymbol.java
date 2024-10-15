@@ -51,6 +51,9 @@ public class InterfaceSymbol extends Symbol{
         functions_symbol.add(_function_symbol);
         return false;
     }
+    public List<FunctionSymbol> getFunctions(){
+        return functions_symbol;
+    }
     public boolean addConnection(ConnectionSymbol _connection_symbol){
         if(connections_symbol.contains(_connection_symbol)){
             System.out.println(_connection_symbol.getName()+" already in the list");

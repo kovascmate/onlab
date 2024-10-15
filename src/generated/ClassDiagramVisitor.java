@@ -1,4 +1,4 @@
-// Generated from C:/Users/kmate/Desktop/asd/onlab/src/ANTLR/ClassDiagram.g4 by ANTLR 4.13.1
+// Generated from C:/Users/kmate/Desktop/Új mappa/onlab/src/ANTLR/ClassDiagram.g4 by ANTLR 4.13.1
 package generated;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -155,6 +155,12 @@ public interface ClassDiagramVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitBoolean_variable(ClassDiagramParser.Boolean_variableContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link ClassDiagramParser#date_variable}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDate_variable(ClassDiagramParser.Date_variableContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link ClassDiagramParser#variable_name}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -208,4 +214,16 @@ public interface ClassDiagramVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitComposition(ClassDiagramParser.CompositionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ClassDiagramParser#association}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAssociation(ClassDiagramParser.AssociationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ClassDiagramParser#multiplicity}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMultiplicity(ClassDiagramParser.MultiplicityContext ctx);
 }

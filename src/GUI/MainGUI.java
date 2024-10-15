@@ -7,12 +7,14 @@ import org.apache.batik.util.XMLResourceDescriptor;
 import org.w3c.dom.Document;
 import org.w3c.dom.svg.SVGDocument;
 import symboltable.ClassSymbol;
+import symboltable.InterfaceSymbol;
 import symboltable.Symbol;
+import symboltable.VariableSymbol;
+import symboltable.FunctionSymbol;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -30,6 +32,7 @@ public class MainGUI {
     private JList<String> functionList;
     private JLabel classNameLabel;
     private TypeSystem typeSystem;
+    private EditorPopUp editorPopUp;
 
     public MainGUI(TypeSystem _typesystem) {
         this.typeSystem = _typesystem;
@@ -43,6 +46,10 @@ public class MainGUI {
         frame = new JFrame("Class Diagram Visualizer");
         frame.setSize(Toolkit.getDefaultToolkit().getScreenSize());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH); // Maximize the frame
+
+        // Initialize the menu
+        initializeMenu();
     }
 
     private void initializeComponents() {
@@ -73,8 +80,54 @@ public class MainGUI {
         classPanel.setLayout(new BorderLayout());
         classPanel.add(classNameLabel, BorderLayout.NORTH);
 
-        JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT,
-                new JScrollPane(attributeList), new JScrollPane(functionList));
+        // Create labels for the lists
+        JLabel attributeLabel = new JLabel("Variables");
+        JLabel functionLabel = new JLabel("Functions");
+
+        // Create buttons for adding new elements
+        JButton addAttributeButton = new JButton("+");
+        JButton addFunctionButton = new JButton("+");
+
+        addAttributeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selectedIndex = attributeList.getSelectedIndex();
+                if (selectedIndex != -1) {
+                    String selectedValue = attributeList.getModel().getElementAt(selectedIndex);
+                    Symbol selectedSymbol = typeSystem.get(selectedValue);
+                    if (selectedSymbol instanceof VariableSymbol) {
+                        EditorPopUp editorPopUp = EditorPopUp.getInstance(selectedSymbol);
+                    }
+                }
+            }
+        });
+
+        addFunctionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selectedIndex = functionList.getSelectedIndex();
+                if (selectedIndex != -1) {
+                    String selectedValue = functionList.getModel().getElementAt(selectedIndex);
+                    Symbol selectedSymbol = typeSystem.get(selectedValue);
+                    if (selectedSymbol instanceof FunctionSymbol) {
+                        EditorPopUp editorPopUp = EditorPopUp.getInstance(selectedSymbol);
+                    }
+                }
+            }
+        });
+
+        // Create panels to hold the labels, lists, and buttons
+        JPanel attributePanel = new JPanel(new BorderLayout());
+        attributePanel.add(attributeLabel, BorderLayout.NORTH);
+        attributePanel.add(new JScrollPane(attributeList), BorderLayout.CENTER);
+        attributePanel.add(addAttributeButton, BorderLayout.SOUTH);
+
+        JPanel functionPanel = new JPanel(new BorderLayout());
+        functionPanel.add(functionLabel, BorderLayout.NORTH);
+        functionPanel.add(new JScrollPane(functionList), BorderLayout.CENTER);
+        functionPanel.add(addFunctionButton, BorderLayout.SOUTH);
+
+        JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, attributePanel, functionPanel);
         splitPane.setResizeWeight(0.5);  // Set the divider location to the middle
 
         classPanel.add(splitPane, BorderLayout.CENTER);
@@ -105,7 +158,9 @@ public class MainGUI {
         HashMap<String, Symbol> hashMap = typeSystem.getHashMap();
         // Add all class and interface names to the comboBox
         for (String name : hashMap.keySet()) {
-            comboBox.addItem(name);
+            if(hashMap.get(name) instanceof ClassSymbol || hashMap.get(name) instanceof InterfaceSymbol){
+                comboBox.addItem(name);
+            }
         }
 
         // Update the classPanel for the currently selected class or interface
@@ -114,6 +169,34 @@ public class MainGUI {
             //updateClassPanel((String) comboBox.getSelectedItem());
         }
 
+    }
+
+    private void initializeMenu() {
+        // Create the menu bar
+        JMenuBar menuBar = new JMenuBar();
+
+        // Create a menu
+        JMenu OpenMenu = new JMenu("Open");
+        JMenu editMenu = new JMenu("Edit");
+        JMenu helpMenu = new JMenu("Help");
+        JMenu exportMenu = new JMenu("Export");
+
+        // Add menu items to the menu
+        JMenuItem svgItem = new JMenuItem("Svg");
+        JMenuItem codeItem = new JMenuItem("Source Code");
+
+        OpenMenu.add(svgItem);
+        OpenMenu.addSeparator();
+        OpenMenu.add(codeItem);
+
+        // Add menus to the menu bar
+        menuBar.add(OpenMenu);
+        menuBar.add(editMenu);
+        menuBar.add(helpMenu);
+        menuBar.add(exportMenu);
+
+        // Set the menu bar to the frame
+        frame.setJMenuBar(menuBar);
     }
 
     public void updateClassPanel(String className) {
@@ -131,6 +214,30 @@ public class MainGUI {
             attributeList.setListData(classSymbol.getVariableSymbols().stream().map(Symbol::toString).toArray(String[]::new));
             functionList.setListData(classSymbol.getFunctionsSymbols().stream().map(Symbol::toString).toArray(String[]::new));
         }
+
+        attributeList.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                if (evt.getClickCount() == 2) {
+                    int index = attributeList.locationToIndex(evt.getPoint());
+                    if (index >= 0) {
+                        String selectedValue = attributeList.getModel().getElementAt(index);
+                        EditorPopUp.getInstance((Symbol) typeSystem.get(selectedValue));
+                    }
+                }
+            }
+        });
+
+        functionList.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                if (evt.getClickCount() == 2) {
+                    int index = functionList.locationToIndex(evt.getPoint());
+                    if (index >= 0) {
+                        String selectedValue = functionList.getModel().getElementAt(index);
+                        EditorPopUp.getInstance((Symbol) typeSystem.get(selectedValue));
+                    }
+                }
+            }
+        });
 
         // Update the classNameLabel
         classNameLabel.setText(className);

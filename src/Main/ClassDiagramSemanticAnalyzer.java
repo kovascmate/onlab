@@ -4,6 +4,8 @@ import TypeSystem.TypeSystem;
 import exceptition.ClassDiagramExceptionHandler;
 import generated.ClassDiagramBaseVisitor;
 import symboltable.ClassSymbol;
+import symboltable.FunctionSymbol;
+import symboltable.InterfaceSymbol;
 
 import java.util.List;
 
@@ -19,6 +21,7 @@ public class ClassDiagramSemanticAnalyzer extends ClassDiagramBaseVisitor<Object
           checkParentClassExsistence();
           checkInterfaceExsistence();
           checkOwnParentClass();
+          checkInterfaceFunctionExsistence();
           return  null;
       }
       public Object checkParentClassExsistence() {
@@ -67,6 +70,21 @@ public class ClassDiagramSemanticAnalyzer extends ClassDiagramBaseVisitor<Object
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
+                }
+            }
+        }
+        return null;
+    }
+    public Object checkInterfaceFunctionExsistence(){
+        List<InterfaceSymbol> list = typeSystem.getInterfaces();
+        for(InterfaceSymbol sym : list){
+            List<FunctionSymbol> functions = sym.getFunctions();
+            if (!functions.isEmpty()){
+                String exception_title = "Interface can't have any function!";
+                try {
+                    throw new Exception(exception_title);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
                 }
             }
         }

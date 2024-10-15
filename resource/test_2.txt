@@ -6,7 +6,7 @@ class Person{
     public string middleName;
     public string familyName;
     public string fullName;
-    private string birthday;
+    private date birthday;
     protected string gender;
     private string homeAddress;
 
@@ -17,6 +17,7 @@ class Person{
 }
 public interface Callable{
     private int phoneNumber;
+
 }
 public class Recipe{
     public string description;
@@ -24,7 +25,7 @@ public class Recipe{
 class Hospital implements Callable{
     public string name;
     private string address;
-    public aggregation Department : department;
+    public association Department : department;
 }
 class Patient extends Person implements Callable{
     public int id;
@@ -74,7 +75,7 @@ class Department implements Callable{
     public void removeStaffFromDepartment(string name){
 
     }
-    public aggregation Staff : staff;
+    public aggregation Staff : staff [0..*];
 }
 class Receptionist extends Front_Desk_Staff{
     public void answerCall(){
