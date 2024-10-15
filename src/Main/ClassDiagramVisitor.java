@@ -136,7 +136,7 @@ public class ClassDiagramVisitor extends ClassDiagramBaseVisitor<Object> {
                source_multiplicity = _context.association().multiplicity().getText();
            }
        }
-       ConnectionSymbol connectionSymbol = new ConnectionSymbol(name,connection_type,class_name,"public","","");
+       ConnectionSymbol connectionSymbol = new ConnectionSymbol(name,connection_type,class_name,"public",source_multiplicity,"");
        typeSystem.add(name, connectionSymbol);
        return connectionSymbol;
     }

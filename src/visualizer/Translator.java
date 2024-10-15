@@ -119,7 +119,7 @@ public class Translator {
                     String symString = ((ClassSymbol) sym).getParantClass();
                     connectionObject.add(keyList.get(symString));
 
-                    objects.add(new VizConnection(connectionObject,"inheritance",""));
+                    objects.add(new VizConnection(connectionObject,"inheritance","",""));
                 }
                 if (((ClassSymbol) sym).getInterface() != null) {
                     connectionObject = new ArrayList<>();
@@ -128,10 +128,10 @@ public class Translator {
                     String symString = ((ClassSymbol) sym).getInterface();
                     connectionObject.add(keyList.get(symString));
 
-                    objects.add(new VizConnection(connectionObject,"implementation",""));
+                    objects.add(new VizConnection(connectionObject,"implementation","",""));
                 }
                 if(((ClassSymbol) sym).getConnectionsSymbols() != null ){
-                    String conType ;
+                    String conType, conMu; ;
                     for(ConnectionSymbol consym : ((ClassSymbol) sym).getConnectionsSymbols()){
                         connectionObject = new ArrayList<>();
 
@@ -140,7 +140,8 @@ public class Translator {
                         connectionObject.add(keyList.get(symString));
                         String connectionName = consym.getConnectionName();
                         conType = consym.getConnectionType();
-                        objects.add(new VizConnection(connectionObject,conType,connectionName));
+                        conMu = consym.getSourceMultiplicity();
+                        objects.add(new VizConnection(connectionObject,conType,connectionName,conMu));
                     }
                 }
             }
@@ -151,10 +152,12 @@ public class Translator {
         public List<VizObject> objects;
         public String connectionName;
         public String connectionType;
-        public  VizConnection(List<VizObject> _objects,String _connectionType, String _connectionName){
+        public String multiplicity;
+        public  VizConnection(List<VizObject> _objects,String _connectionType, String _connectionName, String _multiplicity){
             connectionName = _connectionName;
             objects = _objects;
             connectionType = _connectionType;
+            multiplicity = _multiplicity;
         }
         public String getConnectionName(){
             return connectionName;
@@ -174,13 +177,16 @@ public class Translator {
                 ret = ret.concat("\nedge [\n" +"\tarrowhead = \"odiamond\"" +" style = filled\n\t]\n");
                 ret = ret.concat(objects.get(1).getName()+"->"+objects.get(0).getName());
                 ret = ret.concat("[xlabel=\""+connectionName+"\"]");
+                ret = ret.concat("[taillabel=\""+multiplicity+"\"]");
             } else if (connectionType == "composition") {
                 ret = ret.concat("\nedge [\n" +"\tarrowhead = \"diamond\"" +"  style = filled\n\t]\n");
                 ret = ret.concat("[xlabel=\""+connectionName+"\"]");
                 ret = ret.concat(objects.get(1).getName()+"->"+objects.get(0).getName());
+                ret = ret.concat("[taillabel=\""+multiplicity+"\"]");
             }else if (connectionType == "association") {
                 ret = ret.concat("\nedge [\n" +"\tarrowhead = \"curve\"" +"  style = filled\n\t]\n");
                 ret = ret.concat("[xlabel=\""+connectionName+"\"]");
+                ret = ret.concat("[taillabel=\""+multiplicity+"\"]");
                 ret = ret.concat(objects.get(1).getName()+"->"+objects.get(0).getName());
             }
             return ret;
