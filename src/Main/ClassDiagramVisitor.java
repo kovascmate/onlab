@@ -11,14 +11,25 @@ import java.util.List;
 
 //Szemantikai elemzés
 public class ClassDiagramVisitor extends ClassDiagramBaseVisitor<Object> {
+    private static ClassDiagramVisitor instance = null;
     private Scope scope;
     private ClassDiagramExceptionHandler exceptionHandler;
     private TypeSystem typeSystem;
 
-    public ClassDiagramVisitor(ClassDiagramExceptionHandler _exceptionHandler,TypeSystem _ts){
+    private ClassDiagramVisitor(ClassDiagramExceptionHandler _exceptionHandler,TypeSystem _ts){
         exceptionHandler =_exceptionHandler;
         typeSystem = _ts;
         scope = new Scope(null);
+    }
+
+    public static synchronized ClassDiagramVisitor getInstance(ClassDiagramExceptionHandler _exceptionHandler,TypeSystem _ts){
+        if(instance == null){
+            instance = new ClassDiagramVisitor(_exceptionHandler,_ts);
+        }
+        return instance;
+    }
+    public static void resetInstance(){
+        instance = null;
     }
 
 

@@ -19,6 +19,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 
+import Main.Main;
+
+
+
 public class MainGUI {
     private static final int DIVIDER_LOCATION = 2;
     private static final double RESIZE_WEIGHT = 0.67;
@@ -40,6 +44,18 @@ public class MainGUI {
         initializeComponents();
         addComponentsToFrame();
         frame.setVisible(true);
+    }
+    public MainGUI() {
+        this.typeSystem = null;
+        initializeFrame();
+        initializeComponents();
+        addComponentsToFrame();
+        frame.setVisible(true);
+    }
+
+    public void setTypesystem(TypeSystem _typesystem) {
+        this.typeSystem = _typesystem;
+
     }
 
     private void initializeFrame() {
@@ -184,10 +200,45 @@ public class MainGUI {
         // Add menu items to the menu
         JMenuItem svgItem = new JMenuItem("Svg");
         JMenuItem codeItem = new JMenuItem("Source Code");
+        JMenuItem dotItem = new JMenuItem("Dot File");
 
         OpenMenu.add(svgItem);
         OpenMenu.addSeparator();
         OpenMenu.add(codeItem);
+        OpenMenu.add(dotItem);
+
+        svgItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Main.loadFromSVG();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+
+
+        codeItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Main.loadFromCode();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        dotItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Main.loadFromDot();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
 
         // Add menus to the menu bar
         menuBar.add(OpenMenu);

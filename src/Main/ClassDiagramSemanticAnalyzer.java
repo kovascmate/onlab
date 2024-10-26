@@ -1,6 +1,7 @@
 package Main;
 
 import TypeSystem.TypeSystem;
+import exceptition.ClassDiagramException;
 import exceptition.ClassDiagramExceptionHandler;
 import generated.ClassDiagramBaseVisitor;
 import symboltable.ClassSymbol;
@@ -32,9 +33,9 @@ public class ClassDiagramSemanticAnalyzer extends ClassDiagramBaseVisitor<Object
                   if(!typeSystem.containsKey(parentClass)){
                       String exception_title ="No parent class as :"+parentClass +" in the scope!";
                       try {
-                          throw new Exception(exception_title);
-                      } catch (Exception e) {
-                          throw new RuntimeException(e);
+                          throw new ClassDiagramException(0, 0, exception_title); // Adjust line and column as needed
+                      } catch (ClassDiagramException e) {
+                          e.showErrorDialog();
                       }
                   }
               }
@@ -49,9 +50,9 @@ public class ClassDiagramSemanticAnalyzer extends ClassDiagramBaseVisitor<Object
                 if(!typeSystem.containsKey(implementedInterface)){
                     String exception_title ="No interface as :"+implementedInterface +" in the scope!";
                     try {
-                        throw new Exception(exception_title);
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
+                        throw new ClassDiagramException(0, 0, exception_title);
+                    } catch (ClassDiagramException e) {
+                        e.showErrorDialog();
                     }
                 }
             }
@@ -66,9 +67,9 @@ public class ClassDiagramSemanticAnalyzer extends ClassDiagramBaseVisitor<Object
                 if(parentClass.equals(sym.getName())){
                     String exception_title = "The class is its own parent class: "+sym.getClass()+" !";
                     try {
-                        throw new Exception(exception_title);
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
+                        throw new ClassDiagramException(0, 0, exception_title); // Adjust line and column as needed
+                    } catch (ClassDiagramException e) {
+                        e.showErrorDialog();
                     }
                 }
             }
@@ -82,9 +83,9 @@ public class ClassDiagramSemanticAnalyzer extends ClassDiagramBaseVisitor<Object
             if (!functions.isEmpty()){
                 String exception_title = "Interface can't have any function!";
                 try {
-                    throw new Exception(exception_title);
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
+                    throw new ClassDiagramException(0, 0, exception_title);
+                } catch (ClassDiagramException e) {
+                    e.showErrorDialog();
                 }
             }
         }

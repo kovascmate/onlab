@@ -10,10 +10,11 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Translator {
+    private  static Translator instance = null;
     public List<VizObject> objects;
 
     String input = "";
-    public Translator() throws IOException {
+    private Translator() throws IOException {
         objects = new ArrayList<>();
         File myObj = new File("graph_viz.dot");
         if (myObj.createNewFile()) {
@@ -26,6 +27,12 @@ public class Translator {
         myWriter.write(input);
         myWriter.close();
     }
+    public static synchronized Translator getInstance() throws IOException {
+        if(instance == null){
+            instance = new Translator();
+        }
+        return instance;
+    }
     public void fillString() throws IOException {
         input = input.concat("digraph ClassDiagram {\n" +
                 "        node [\n" +
@@ -33,7 +40,8 @@ public class Translator {
                 "        ]\n" +
                 "        edge [\n" +
                 "                arrowhead = \"empty\"\n" +
-                "        ]");
+                "        ]"+
+                "\n//Classes");
         for(VizObject vizObject : objects){
             input = input.concat(vizObject.getVizString());
         }
