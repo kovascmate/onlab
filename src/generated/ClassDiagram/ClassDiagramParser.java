@@ -1,13 +1,10 @@
-// Generated from C:/Users/kmate/Desktop/Új mappa/onlab/src/ANTLR/ClassDiagram.g4 by ANTLR 4.13.1
-package generated;
+// Generated from C:/Users/kmate/Desktop/ï¿½j mappa/onlab/src/ANTLR/ClassDiagram.g4 by ANTLR 4.13.1
+package generated.ClassDiagram;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
-import org.antlr.v4.runtime.misc.*;
 import org.antlr.v4.runtime.tree.*;
 import java.util.List;
-import java.util.Iterator;
-import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast", "CheckReturnValue"})
 public class ClassDiagramParser extends Parser {

@@ -1,5 +1,5 @@
-// Generated from C:/Users/kmate/Desktop/Új mappa/onlab/src/ANTLR/ClassDiagram.g4 by ANTLR 4.13.1
-package generated;
+// Generated from C:/Users/kmate/Desktop/ï¿½j mappa/onlab/src/ANTLR/ClassDiagram.g4 by ANTLR 4.13.1
+package generated.ClassDiagram;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;

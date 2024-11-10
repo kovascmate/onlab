@@ -207,6 +207,21 @@ public class MainGUI {
         OpenMenu.add(codeItem);
         OpenMenu.add(dotItem);
 
+        JMenuItem exportTypeSystem = new JMenuItem("Export Type System");
+        exportTypeSystem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Main.dot2typeSystem();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        exportMenu.add(exportTypeSystem);
+
+
+
         svgItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

@@ -1,7 +1,9 @@
 package Main;
 
-import generated.ClassDiagramLexer;
-import generated.ClassDiagramParser;
+import generated.ClassDiagram.ClassDiagramLexer;
+import generated.ClassDiagram.ClassDiagramParser;
+import generated.DotGrammar.DotGrammarLexer;
+import generated.DotGrammar.DotGrammarParser;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 
@@ -19,6 +21,15 @@ public class Functions4use {
         ClassDiagramParser parser      = new ClassDiagramParser(tokenStream);
         ClassDiagramParser.ProgramContext context     = parser.program();
         return  context;
+    }
+    public static DotGrammarParser.DiagramContext ReadASTdot(File selectedFile){
+        String fileContent = readFile(selectedFile);
+        ANTLRInputStream inputStream = new ANTLRInputStream(fileContent);
+        DotGrammarLexer lexer = new DotGrammarLexer(inputStream);
+        CommonTokenStream tokenStream = new CommonTokenStream(lexer);
+        DotGrammarParser parser     = new DotGrammarParser(tokenStream);
+        DotGrammarParser.DiagramContext context = parser.diagram();
+        return context;
     }
     public static String readFile(File file) {
         StringBuilder content = new StringBuilder();

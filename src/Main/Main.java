@@ -2,9 +2,10 @@ package Main;
 
 import GUI.MainGUI;
 import TypeSystem.TypeSystem;
+import dotFactory.DotVisitor;
 import exceptition.ClassDiagramException;
 import exceptition.ClassDiagramExceptionHandler;
-import generated.ClassDiagramParser;
+import generated.ClassDiagram.ClassDiagramParser;
 import visualizer.Translator;
 
 import javax.swing.*;
@@ -23,10 +24,6 @@ public class Main {
     public static Translator translator = null;
     public static ClassDiagramSemanticAnalyzer semanticAnalyzer = null;
     public static void main(String[] args) throws Exception {
-        Converter converter = new Converter();
-        String dotContent = converter.readDotFile("graph_viz.dot");
-        TypeSystem typeSystem = converter.convertDotToTypeSystem(dotContent);
-
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
         exceptionHandler = new ClassDiagramExceptionHandler();
@@ -60,6 +57,13 @@ public class Main {
         ClassDiagramParser.ProgramContext context = Functions4use.ReadAST(selectedFile);
         visitor.visitProgram(context);
         semanticAnalyzer.SemanticAnalyze();
+
+    }
+    public static void dot2typeSystem(){
+        typeSystem = TypeSystem.getInstance();
+        DotVisitor dotVisitor = new DotVisitor(typeSystem);
+        File selectedFile = fileChoser();
+        dotVisitor.visitDiagram(Functions4use.ReadASTdot(selectedFile));
 
     }
     public static File fileChoser() {

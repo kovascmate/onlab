@@ -2,8 +2,8 @@ package Main;
 
 import TypeSystem.TypeSystem;
 import exceptition.ClassDiagramExceptionHandler;
-import generated.ClassDiagramBaseVisitor;
-import generated.ClassDiagramParser;
+import generated.ClassDiagram.ClassDiagramBaseVisitor;
+import generated.ClassDiagram.ClassDiagramParser;
 import symboltable.*;
 
 import java.util.ArrayList;

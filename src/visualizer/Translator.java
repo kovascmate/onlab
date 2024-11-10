@@ -34,14 +34,7 @@ public class Translator {
         return instance;
     }
     public void fillString() throws IOException {
-        input = input.concat("digraph ClassDiagram {\n" +
-                "        node [\n" +
-                "                shape = \"record\"\n" +
-                "        ]\n" +
-                "        edge [\n" +
-                "                arrowhead = \"empty\"\n" +
-                "        ]"+
-                "\n//Classes");
+        input = input.concat("digraph ClassDiagram { node [ shape = \"record\"] edge [ arrowhead = \"empty\"]");
         for(VizObject vizObject : objects){
             input = input.concat(vizObject.getVizString());
         }

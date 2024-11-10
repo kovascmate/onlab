@@ -3,7 +3,7 @@ package Main;
 import TypeSystem.TypeSystem;
 import exceptition.ClassDiagramException;
 import exceptition.ClassDiagramExceptionHandler;
-import generated.ClassDiagramBaseVisitor;
+import generated.ClassDiagram.ClassDiagramBaseVisitor;
 import symboltable.ClassSymbol;
 import symboltable.FunctionSymbol;
 import symboltable.InterfaceSymbol;

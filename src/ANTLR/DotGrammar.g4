@@ -1,46 +1,90 @@
 grammar DotGrammar;
-import ClassDiagram;
 
 diagram
-    : 'digraph' CLASS_NAME '{'
-        HEADER
-        nodes
-        edges
-    '}'
+    : 'digraph ' CLASS_NAME '{' HEADER nodes edges
     ;
+
 nodes
-    : node*
+    : (node)*
     ;
+
 edges
-    : edge*
+    : (edge)*
     ;
 
-node: CLASS_NAME '['  ']';
+node: node_title '[ label = "{'  node_body '}"]';
 
-edge: 'edge' '[' arrow_head+ style+ ']'
-        CLASS_NAME '->' CLASS_NAME'[xlabel = "' IDENTIFIER '"]';
+node_title: CLASS_NAME;
+node_body: (INTERFACE_NAME | CLASS_NAME ) '|'
+         dot_variables '|'
+         dot_functions ;
+
+dot_functions: dot_function*;
+dot_variables: dot_variable*;
+
+dot_variable: VISIBILITY_ICON IDENTIFIER ':' variable_type '\\n';
+
+edge: 'edge [' edge_attributes ']' CLASS_NAME '->' CLASS_NAME edge_labels?;
+
+edge_attributes: (arrow_head | style | WHITESPACE)*;
+edge_labels: '[' (xlabel | taillabel) ']';
+
+dot_function: VISIBILITY_ICON IDENTIFIER '('  ')' ':' ('void' | variable_type)'\n';
 
 arrow_head: 'arrowhead = ' ARROWHEAD_TYPE;
-style: 'style = ' STYLE_TYPE;
-tail: 'taillabel = ' IDENTIFIER;
+style: 'style = ' STYLE_TYPE | 'style=' STYLE_TYPE;
+xlabel: 'xlabel="' IDENTIFIER '"';
+taillabel: 'taillabel="' multiplicity '"';
+
+variable_type
+    : 'int'
+    | 'boolean'
+    | 'string'
+    | 'double'
+    | 'date'
+    ;
+
+multiplicity
+    : '[' NUMBERS '..' (NUMBERS | '*') ']'
+    | '[' NUMBERS ']'
+    ;
+
+WHITESPACE
+    : [ \t]+ -> skip
+    ;
+
+NEWLINE
+    : '\r'? '\n' -> skip
+    ;
+
+INTERFACE_NAME: '« ' CLASS_NAME ' »';
 
 HEADER:
-     'node [ shape = "record" ] edge [ arrowhead =' ARROWHEAD_TYPE ']';
+     'node [ shape = "record"] edge [ arrowhead = "empty"]';
+
 ARROWHEAD_TYPE
-    :
-    '"empty"'
+    : '"empty"'
     | '"odiamond"'
     | '"diamond"'
+    | '"curve"'
     ;
+
+
+CLASS_NAME
+    : [A-Z][a-zA-Z0-9_]*
+    ;
+
+IDENTIFIER
+    : [a-z][a-zA-Z0-9_]*
+    ;
+
+NUMBERS
+    : ('-' | '+')? [0-9]+
+    ;
+
 STYLE_TYPE
-    :
-    '"dashed"'
-    |'"filled"'
+    : '"dashed"'
+    | '"filled"'
     ;
-MULTIPLICITY
-    : '0..1'
-    | '1'
-    | '0..*'
-    | '1..*'
-    | '*'
-    ;
+
+VISIBILITY_ICON: '-' | '#' | '+';
