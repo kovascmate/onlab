@@ -60,6 +60,13 @@ public class DotGrammarBaseVisitor<T> extends AbstractParseTreeVisitor<T> implem
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitInterface_name(DotGrammarParser.Interface_nameContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitDot_functions(DotGrammarParser.Dot_functionsContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}

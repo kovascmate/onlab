@@ -163,7 +163,7 @@ public class ClassDiagramVisitor extends ClassDiagramBaseVisitor<Object> {
         }
 
         FunctionSymbol functionSymbol = new FunctionSymbol(function_name,function_return,parameters,function_visibility);
-        typeSystem.add(function_name,functionSymbol);
+        //typeSystem.add(function_name,functionSymbol);
         return functionSymbol;
     }
     public Object visitConnection(ClassDiagramParser.ConnectionsContext _context){

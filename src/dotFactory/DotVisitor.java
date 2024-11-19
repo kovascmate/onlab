@@ -2,11 +2,15 @@ package dotFactory;
 
 import TypeSystem.TypeSystem;
 import generated.DotGrammar.DotGrammarParser;
+import symboltable.*;
 
+import java.io.Console;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 public class DotVisitor {
     private  TypeSystem typeSystem;
@@ -37,16 +41,105 @@ public class DotVisitor {
         }
         return null;
     }
+
     public Object visitNode(DotGrammarParser.NodeContext _context){
         String node_name = _context.node_title().getText();
         DotGrammarParser.Node_bodyContext node_bodyContext = _context.node_body();
-        String node_body = node_bodyContext.getText();
-        System.out.println(node_name + " " + node_body);
+        if(node_bodyContext.interface_name() != null){
+            InterfaceSymbol interfaceSymbol = new InterfaceSymbol(node_name);
+            for(DotGrammarParser.Dot_variableContext variableContext : node_bodyContext.dot_variables().dot_variable()){
+                interfaceSymbol.addVariable(visitVariable(variableContext));
+            }
+            typeSystem.add(node_name,interfaceSymbol);
+        }
+        else{
+            ClassSymbol classSymbol = new ClassSymbol(node_name);
+            for (DotGrammarParser.Dot_variableContext variableContext : node_bodyContext.dot_variables().dot_variable()){
+                classSymbol.addVariable(visitVariable(variableContext));
+            }
+            for (DotGrammarParser.Dot_functionContext functionContext : node_bodyContext.dot_functions().dot_function()){
+                classSymbol.addFunction(visitFunction(functionContext));
+            }
+            typeSystem.add(node_name,classSymbol);
+        }
         return null;
     }
-
+    public FunctionSymbol visitFunction(DotGrammarParser.Dot_functionContext _context){
+        String  visibility = "";
+        switch (_context.VISIBILITY_ICON().getText()){
+            case "+":
+                visibility =  "public";
+            case "-":
+                visibility =  "private";
+            case "#":
+                visibility = "protected";
+        }
+        String name = _context.IDENTIFIER().getText();
+        String returnType;
+        if(_context.variable_type() != null){
+            returnType = _context.variable_type().getText();
+        }else{
+            returnType = "void";
+        }
+        FunctionSymbol functionSymbol = new FunctionSymbol(name,returnType,null,visibility);
+        return functionSymbol;
+    }
+    public VariableSymbol visitVariable(DotGrammarParser.Dot_variableContext _context){
+        String visibility = "";
+        switch (_context.VISIBILITY_ICON().getText()){
+            case "+":
+                visibility =  "public";
+                break;
+            case "-":
+                visibility =  "private";
+                break;
+            case "#":
+                visibility = "protected";
+                break;
+        }
+        String name = _context.IDENTIFIER().getText();
+        String type = _context.variable_type().getText();
+        VariableSymbol variableSymbol = new VariableSymbol(name,type,visibility);
+        return variableSymbol;
+    }
     public Object visitEdge(DotGrammarParser.EdgeContext _context){
+        String source = _context.CLASS_NAME(0).getText();
+        String target = _context.CLASS_NAME(1).getText();
 
+        String connectionType = "";
+
+        if(_context.edge_attributes().style() != null){
+            String arrowHead = _context.edge_attributes().arrow_head().getFirst().ARROWHEAD_TYPE().getText();
+
+            switch (arrowHead){
+                case "empty":
+                    connectionType = "implementation";
+                    break;
+                case "odiamond":
+                    connectionType = "aggregation";
+                    break;
+                case "diamond":
+                    connectionType = "composition";
+                    break;
+                case "curve":
+                    connectionType = "association";
+                    break;
+            }
+        }else{
+            connectionType = "inheritance";
+        }
+
+        String xLabel = "",tailLabel = "";
+        if(_context.edge_labels() != null){
+            if(_context.edge_labels().xlabel() != null){
+                 xLabel = _context.edge_labels().xlabel().getText();
+            }
+            if(_context.edge_labels().taillabel() != null){
+                tailLabel = _context.edge_labels().taillabel().multiplicity().getText();
+            }
+        }
+        ConnectionSymbol connectionSymbol = new ConnectionSymbol(source,connectionType,target,"public",tailLabel,xLabel);
+        typeSystem.add(source+""+target,connectionSymbol);
         return null;
     }
 }

@@ -89,6 +89,18 @@ public class DotGrammarBaseListener implements DotGrammarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterInterface_name(DotGrammarParser.Interface_nameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitInterface_name(DotGrammarParser.Interface_nameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterDot_functions(DotGrammarParser.Dot_functionsContext ctx) { }
 	/**
 	 * {@inheritDoc}

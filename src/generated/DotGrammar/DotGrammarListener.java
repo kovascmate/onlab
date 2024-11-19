@@ -68,6 +68,16 @@ public interface DotGrammarListener extends ParseTreeListener {
 	 */
 	void exitNode_body(DotGrammarParser.Node_bodyContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link DotGrammarParser#interface_name}.
+	 * @param ctx the parse tree
+	 */
+	void enterInterface_name(DotGrammarParser.Interface_nameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DotGrammarParser#interface_name}.
+	 * @param ctx the parse tree
+	 */
+	void exitInterface_name(DotGrammarParser.Interface_nameContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link DotGrammarParser#dot_functions}.
 	 * @param ctx the parse tree
 	 */

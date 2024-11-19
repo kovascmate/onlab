@@ -181,14 +181,15 @@ public class Translator {
                 ret = ret.concat("[taillabel=\""+multiplicity+"\"]");
             } else if (connectionType == "composition") {
                 ret = ret.concat("\nedge [\n" +"\tarrowhead = \"diamond\"" +"  style = filled\n\t]\n");
-                ret = ret.concat("[xlabel=\""+connectionName+"\"]");
                 ret = ret.concat(objects.get(1).getName()+"->"+objects.get(0).getName());
+                ret = ret.concat("[xlabel=\""+connectionName+"\"]");
                 ret = ret.concat("[taillabel=\""+multiplicity+"\"]");
             }else if (connectionType == "association") {
                 ret = ret.concat("\nedge [\n" +"\tarrowhead = \"curve\"" +"  style = filled\n\t]\n");
+                ret = ret.concat(objects.get(1).getName()+"->"+objects.get(0).getName());
                 ret = ret.concat("[xlabel=\""+connectionName+"\"]");
                 ret = ret.concat("[taillabel=\""+multiplicity+"\"]");
-                ret = ret.concat(objects.get(1).getName()+"->"+objects.get(0).getName());
+
             }
             return ret;
         }
@@ -234,7 +235,7 @@ public class Translator {
                 functionString = functionString.concat(vizFunction.getVizString());
             }
             String interfaceString ="\n"+ name + "[ "
-                    +"label = \"{"+"« "+name+" »"+"|";
+                    +"label = \"{"+"* "+name+" *"+"|";
             interfaceString = interfaceString.concat(variableString);
             interfaceString = interfaceString.concat(functionString);
             interfaceString = interfaceString.concat(" }\"]");

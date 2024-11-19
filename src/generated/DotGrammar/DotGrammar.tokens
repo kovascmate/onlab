@@ -25,43 +25,40 @@ T__23=24
 T__24=25
 T__25=26
 T__26=27
-T__27=28
-WHITESPACE=29
-NEWLINE=30
-INTERFACE_NAME=31
-HEADER=32
-ARROWHEAD_TYPE=33
-CLASS_NAME=34
-IDENTIFIER=35
-NUMBERS=36
-STYLE_TYPE=37
-VISIBILITY_ICON=38
-'digraph '=1
+WHITESPACE=28
+INTERFACE_NAME=29
+HEADER=30
+ARROWHEAD_TYPE=31
+STYLE_TYPE=32
+CLASS_NAME=33
+IDENTIFIER=34
+NUMBERS=35
+VISIBILITY_ICON=36
+'digraph'=1
 '{'=2
-'[ label = "{'=3
-' }"]'=4
-'|'=5
-':'=6
-'\\n'=7
-'edge'=8
-'['=9
-']'=10
-'->'=11
-'('=12
-')'=13
-'void'=14
-'\n'=15
-'arrowhead = '=16
-'style = '=17
-'style='=18
-'xlabel="'=19
-'"'=20
-'taillabel="'=21
+'['=3
+'label'=4
+'='=5
+'"'=6
+'}"]'=7
+'|'=8
+'*'=9
+':'=10
+'\\n'=11
+'edge'=12
+']'=13
+'->'=14
+'('=15
+')'=16
+'void'=17
+'arrowhead'=18
+'style'=19
+'xlabel'=20
+'taillabel'=21
 'int'=22
 'boolean'=23
 'string'=24
 'double'=25
 'date'=26
 '..'=27
-'*'=28
-'node [ shape = "record"] edge [ arrowhead = "empty"]'=32
+'node [ shape = "record"] edge [ arrowhead = "empty"]'=30

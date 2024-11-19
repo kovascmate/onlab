@@ -47,6 +47,12 @@ public interface DotGrammarVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitNode_body(DotGrammarParser.Node_bodyContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link DotGrammarParser#interface_name}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInterface_name(DotGrammarParser.Interface_nameContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link DotGrammarParser#dot_functions}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
