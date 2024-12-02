@@ -35,8 +35,10 @@ public class ClassDiagramVisitor extends ClassDiagramBaseVisitor<Object> {
 
 
     public Object visitProgram(ClassDiagramParser.ProgramContext _context){
-        ClassDiagramParser.Package_defContext packageDefContext =  _context.package_def();
+        if(_context.package_def() != null){
+            ClassDiagramParser.Package_defContext packageDefContext =  _context.package_def();
             visitPackage(packageDefContext);
+        }
         ClassDiagramParser.ImportsContext importsContext =  _context.imports();
             visitImports(importsContext);
         List<ClassDiagramParser.ClassContext> classContext = _context.class_();

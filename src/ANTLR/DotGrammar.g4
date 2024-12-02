@@ -18,7 +18,7 @@ node_title: CLASS_NAME;
 node_body: (interface_name | CLASS_NAME ) '|'
          dot_variables '|'
          dot_functions ;
-interface_name: '*' CLASS_NAME '*';
+interface_name: '«' CLASS_NAME '»';
 
 //LEFT_GUILLEMET: '*';
 //RIGHT_GUILLEMET: '*';

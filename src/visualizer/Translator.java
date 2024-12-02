@@ -235,7 +235,7 @@ public class Translator {
                 functionString = functionString.concat(vizFunction.getVizString());
             }
             String interfaceString ="\n"+ name + "[ "
-                    +"label = \"{"+"* "+name+" *"+"|";
+                    +"label = \"{"+"«"+name+"»"+"|";
             interfaceString = interfaceString.concat(variableString);
             interfaceString = interfaceString.concat(functionString);
             interfaceString = interfaceString.concat(" }\"]");

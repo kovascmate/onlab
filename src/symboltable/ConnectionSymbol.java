@@ -20,6 +20,11 @@ public class ConnectionSymbol extends  Symbol{
     public String getConnectionName(){
         return getName();
     }
+    public String getVisibility(){
+        return visibility;
+    }
+
+
 
     // A kapcsolat típusának lekérdezése
     public String getConnectionType() {

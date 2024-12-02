@@ -2,6 +2,7 @@ package Main;
 
 import GUI.MainGUI;
 import TypeSystem.TypeSystem;
+import codegen.ClassDiagramCodeGenerator;
 import dotFactory.DotVisitor;
 import exceptition.ClassDiagramException;
 import exceptition.ClassDiagramExceptionHandler;
@@ -12,8 +13,8 @@ import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.concurrent.TimeUnit;
-import converter.Converter;
 
 
 public class Main {
@@ -23,6 +24,8 @@ public class Main {
     public static TypeSystem typeSystem = null;
     public static Translator translator = null;
     public static ClassDiagramSemanticAnalyzer semanticAnalyzer = null;
+    private static final
+    Path classDiagramSTPath = Paths.get("src", "codegen", "stringtemplate", "ClassDiagram.stg");
     public static void main(String[] args) throws Exception {
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
@@ -59,11 +62,12 @@ public class Main {
         semanticAnalyzer.SemanticAnalyze();
 
     }
-    public static void dot2typeSystem(){
+    public static void dot2typeSystem() throws ClassDiagramException {
         typeSystem = TypeSystem.getInstance();
         DotVisitor dotVisitor = new DotVisitor(typeSystem);
         File selectedFile = fileChoser();
         dotVisitor.visitDiagram(Functions4use.ReadASTdot(selectedFile));
+        int a = 1;
     }
     public static File fileChoser() {
         JFileChooser fileChooser = new JFileChooser(System.getProperty("user.dir"));
@@ -89,6 +93,14 @@ public class Main {
         System.out.println(filepath.toString());
         ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", "dot -Tsvg "+filepath.toString()+" > output.svg ");
         Process p = builder.start();
+    }
+    public static void typeSystem2code() throws Exception {
+        if(typeSystem == null){
+            throw new Exception("TypeSystem is null");
+        }
+        ClassDiagramCodeGenerator ClassDiagram = new ClassDiagramCodeGenerator(typeSystem);
+        ClassDiagram.visit();
+
     }
     public static void clear(){
         TypeSystem.resetInstance();
