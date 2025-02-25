@@ -15,6 +15,13 @@ public class InterfaceSymbol extends Symbol{
         functions_symbol = new ArrayList<>();
         connections_symbol = new ArrayList<>();
     }
+
+    public FunctionSymbol getFunctionSymbol(int _index){
+        return functions_symbol.get(_index);
+    }
+    public VariableSymbol getVariableSymbol(int _index){
+        return variables_symbol.get(_index);
+    }
     public String getName(){
         return super.getName();
     }

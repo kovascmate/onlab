@@ -67,7 +67,6 @@ public class Main {
         DotVisitor dotVisitor = new DotVisitor(typeSystem);
         File selectedFile = fileChoser();
         dotVisitor.visitDiagram(Functions4use.ReadASTdot(selectedFile));
-        int a = 1;
     }
     public static File fileChoser() {
         JFileChooser fileChooser = new JFileChooser(System.getProperty("user.dir"));

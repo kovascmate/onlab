@@ -16,8 +16,12 @@ public class ClassSymbol extends  Symbol {
     public List<ConnectionSymbol> connections_symbol;
 
 
-
-
+    public FunctionSymbol getFunctionSymbol(int _index){
+        return functions_symbol.get(_index);
+    }
+    public VariableSymbol getVariableSymbol(int _index){
+        return variables_symbol.get(_index);
+    }
 
     public ClassSymbol(String _name){
         super(_name);

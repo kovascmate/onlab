@@ -18,6 +18,7 @@ import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.stream.Collectors;
 
 import Main.Main;
 
@@ -114,6 +115,8 @@ public class MainGUI {
                     if (selectedSymbol instanceof VariableSymbol) {
                         EditorPopUp editorPopUp = EditorPopUp.getInstance(selectedSymbol);
                     }
+                }else{
+                    EditorPopUp editorPopUp = EditorPopUp.getInstance(new VariableSymbol("","",null));
                 }
             }
         });
@@ -284,7 +287,6 @@ public class MainGUI {
         // Clear the attributeList and functionList
         attributeList.setListData(new String[0]);
         functionList.setListData(new String[0]);
-
         if (selectedSymbol instanceof ClassSymbol) {
             ClassSymbol classSymbol = (ClassSymbol) selectedSymbol;
 
@@ -298,8 +300,13 @@ public class MainGUI {
                 if (evt.getClickCount() == 2) {
                     int index = attributeList.locationToIndex(evt.getPoint());
                     if (index >= 0) {
-                        String selectedValue = attributeList.getModel().getElementAt(index);
-                        EditorPopUp.getInstance((Symbol) typeSystem.get(selectedValue));
+                        if(typeSystem.get(comboBox.getSelectedItem().toString()) instanceof ClassSymbol){
+                            var asd = (ClassSymbol) typeSystem.get(comboBox.getSelectedItem().toString());
+                            EditorPopUp.getInstance(asd.getVariableSymbol(index));
+                        }else if(typeSystem.get(comboBox.getSelectedItem().toString()) instanceof InterfaceSymbol){
+                            var asd = (InterfaceSymbol) typeSystem.get(comboBox.getSelectedItem().toString());
+                            EditorPopUp.getInstance(asd.getVariableSymbol(index));
+                        }
                     }
                 }
             }
@@ -310,8 +317,13 @@ public class MainGUI {
                 if (evt.getClickCount() == 2) {
                     int index = functionList.locationToIndex(evt.getPoint());
                     if (index >= 0) {
-                        String selectedValue = functionList.getModel().getElementAt(index);
-                        EditorPopUp.getInstance((Symbol) typeSystem.get(selectedValue));
+                        if(typeSystem.get(comboBox.getSelectedItem().toString()) instanceof ClassSymbol){
+                            var asd = (ClassSymbol) typeSystem.get(comboBox.getSelectedItem().toString());
+                            EditorPopUp.getInstance(asd.getFunctionSymbol(index));
+                        }else if(typeSystem.get(comboBox.getSelectedItem().toString()) instanceof InterfaceSymbol){
+                            var asd = (InterfaceSymbol) typeSystem.get(comboBox.getSelectedItem().toString());
+                            EditorPopUp.getInstance(asd.getFunctionSymbol(index));
+                        }
                     }
                 }
             }

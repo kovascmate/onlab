@@ -6,9 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import symboltable.Symbol;
-import symboltable.VariableSymbol;
-import symboltable.FunctionSymbol;
+
+import symboltable.*;
 
 public class EditorPopUp {
 
@@ -23,11 +22,20 @@ public class EditorPopUp {
     private JLabel typeLabel;
     private JLabel nameLabel;
     private Symbol symbol;
+    private Symbol symbol2;
 
     private EditorPopUp(Symbol _symbol) {
         symbol = _symbol;
         initializeFrame();
         initializeComponents(symbol);
+        addComponentsToFrame();
+        frame.setVisible(true);
+    }
+    private EditorPopUp(Symbol _symbol1,Symbol _symbol2) {
+        symbol = _symbol1;
+        symbol2 = _symbol2;
+        initializeFrame();
+        initializeComponents(_symbol1,_symbol2);
         addComponentsToFrame();
         frame.setVisible(true);
     }
@@ -41,6 +49,16 @@ public class EditorPopUp {
         }
         return instance;
     }
+    public static synchronized EditorPopUp getInstance(Symbol _symbol1,Symbol _symbol2) {
+        if (instance == null) {
+            instance = new EditorPopUp(_symbol1,_symbol2);
+        } else {
+            instance.frame.toFront();
+            instance.frame.requestFocus();
+        }
+        return instance;
+    }
+
 
     private void initializeFrame() {
         frame = new JFrame("Editor Pop-Up");
@@ -63,20 +81,17 @@ public class EditorPopUp {
         typeLabel = new JLabel("Type:");
         nameLabel = new JLabel("Name:");
 
-        visibilityField = new JTextField();
-        typeField = new JTextField();
-        nameField = new JTextField();
 
         if (symbol instanceof VariableSymbol) {
             VariableSymbol variableSymbol = (VariableSymbol) symbol;
-            visibilityField.setText(variableSymbol.getVisibility());
-            typeField.setText(variableSymbol.getType());
-            nameField.setText(variableSymbol.getName());
+            visibilityField = new JTextField(variableSymbol.getVisibility());
+            typeField = new JTextField(variableSymbol.getType());
+            nameField = new JTextField(variableSymbol.getName());
         } else if (symbol instanceof FunctionSymbol) {
             FunctionSymbol functionSymbol = (FunctionSymbol) symbol;
-            visibilityField.setText(functionSymbol.getVisibility());
-            typeField.setText(functionSymbol.getReturnType());
-            nameField.setText(functionSymbol.getName());
+            visibilityField = new JTextField(functionSymbol.getVisibility());
+            typeField = new JTextField(functionSymbol.getReturnType());
+            nameField = new JTextField(functionSymbol.getName());
         }
 
         cancelButton = new JButton("Cancel");
@@ -86,6 +101,85 @@ public class EditorPopUp {
         cancelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+            }
+        });
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (symbol instanceof VariableSymbol) {
+                    VariableSymbol variableSymbol = (VariableSymbol) symbol;
+                    variableSymbol.setVisibility(visibilityField.getText());
+                    variableSymbol.setType(typeField.getText());
+                    variableSymbol.setName(nameField.getText());
+                } else if (symbol instanceof FunctionSymbol) {
+                    FunctionSymbol functionSymbol = (FunctionSymbol) symbol;
+                    functionSymbol.setVisibility(visibilityField.getText());
+                    functionSymbol.setReturnType(typeField.getText());
+                    functionSymbol.setName(nameField.getText());
+                }
+
+                frame.dispose();
+            }
+        });
+    }
+    private void initializeComponents(Symbol symbol1,Symbol symbol2) {
+        visibilityLabel = new JLabel("Visibility:");
+        typeLabel = new JLabel("Type:");
+        nameLabel = new JLabel("Name:");
+
+
+        if (symbol1 instanceof VariableSymbol) {
+            visibilityField = new JTextField();
+            typeField = new JTextField();
+            nameField = new JTextField();
+        } else if (symbol1 instanceof FunctionSymbol) {
+            visibilityField = new JTextField();
+            typeField = new JTextField();
+            nameField = new JTextField();
+        }
+
+        cancelButton = new JButton("Cancel");
+        saveButton = new JButton("Save");
+
+        // Add action listener to CancelButton
+        cancelButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+            }
+        });
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (symbol instanceof VariableSymbol) {
+                    VariableSymbol variableSymbol = (VariableSymbol) symbol;
+                    variableSymbol.setVisibility(visibilityField.getText());
+                    variableSymbol.setType(typeField.getText());
+                    variableSymbol.setName(nameField.getText());
+                    if(symbol2 instanceof ClassSymbol){
+                        ClassSymbol classSymbol = (ClassSymbol) symbol2;
+                        classSymbol.addVariable(variableSymbol);
+                    }
+                    else if (symbol2 instanceof InterfaceSymbol){
+                        InterfaceSymbol interfaceSymbol = (InterfaceSymbol) symbol2;
+                        interfaceSymbol.addVariable(variableSymbol);
+                    }
+                } else if (symbol instanceof FunctionSymbol) {
+                    FunctionSymbol functionSymbol = (FunctionSymbol) symbol;
+                    functionSymbol.setVisibility(visibilityField.getText());
+                    functionSymbol.setReturnType(typeField.getText());
+                    functionSymbol.setName(nameField.getText());
+                    if(symbol2 instanceof ClassSymbol){
+                        ClassSymbol classSymbol = (ClassSymbol) symbol2;
+                        classSymbol.addFunction(functionSymbol);
+                    }
+                    else if (symbol2 instanceof InterfaceSymbol){
+                        InterfaceSymbol interfaceSymbol = (InterfaceSymbol) symbol2;
+                        interfaceSymbol.addFunction(functionSymbol);
+                    }
+                }
+
                 frame.dispose();
             }
         });

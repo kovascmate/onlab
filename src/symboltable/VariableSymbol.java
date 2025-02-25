@@ -1,15 +1,24 @@
 package symboltable;
 
 public class VariableSymbol extends Symbol{
-    private final String visibility;
-    private final String type;
-    private final SymbolType symbolType;
+    private  String visibility;
+    private  String type;
+    private  SymbolType symbolType;
 
     public VariableSymbol(String name, String type,String _visibility) {
         super(name);
         visibility = _visibility;
         this.type = type;
         symbolType = SymbolType.VARIABLESYMBOL;
+    }
+    public void setVisibility(String _visibility){
+        visibility = _visibility;
+    }
+    public void setType(String _type){
+        type = _type;
+    }
+    public void setName(String _name){
+        super.setName(_name);
     }
     public String getVisibility(){
         return  visibility;
