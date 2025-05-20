@@ -26,6 +26,9 @@ class Patient extends Person implements Callable {
 	public string printPatientInfo(){
 		return null;
 	}
+	public void asdasd(){
+		return null;
+	}
 	public composition Recipe : recipe ; 
 }
 class Doctor extends Operations_Staff {
@@ -41,7 +44,6 @@ class Surgical_Technologist extends Technologist {
 	}
 }
 interface Callable {
-	private int phoneNumber;
 }
 class Department implements Callable {
 	public void addStaffToDepartment(){
@@ -73,19 +75,11 @@ class Person {
 	private int age;
 	public string givenName;
 	public string middleName;
-	public string familyNameasd;
-	public string fullName_(){
-		return null;
-	}
-	private date birthday(){
-		return null;
-	}
-	protected string gender(){
-		return null;
-	}
-	private string homeAddress(){
-		return null;
-	}
+	public string familyName;
+	public string fullName;
+	private date birthday;
+	protected string gender;
+	private string homeAddress;
 	public string printInfo(){
 		return null;
 	}

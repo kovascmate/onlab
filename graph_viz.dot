@@ -8,7 +8,7 @@ Patient [ label = "{Patient|+ id : int\n# accepted : boolean\n- sickness : strin
 Doctor [ label = "{Doctor|+ speciality : string\n+ location : string\n| }"]
 Surgeon [ label = "{Surgeon||+ performSurgery() :void\n }"]
 Surgical_Technologist [ label = "{Surgical_Technologist||+ prepareSurgicalEquipment() :void\n }"]
-Callable[ label = "{«Callable»|- phoneNumber : int\n| }"]
+Callable[ label = "{«Callable»|| }"]
 Department [ label = "{Department||+ addStaffToDepartment() :void\n+ removeStaffFromDepartment() :void\n }"]
 Administrative_Staff [ label = "{Administrative_Staff|| }"]
 Technical_Staff [ label = "{Technical_Staff|| }"]
@@ -17,54 +17,6 @@ Hospital [ label = "{Hospital|+ name : string\n- address : string\n| }"]
 Tehnician [ label = "{Tehnician||+ performMaintenance() :void\n+ repairEquipment() :int\n }"]
 Person [ label = "{Person|+ title : string\n- age : int\n+ givenName : string\n+ middleName : string\n+ familyName : string\n+ fullName : string\n- birthday : date\n# gender : string\n- homeAddress : string\n|+ printInfo() :string\n }"]
 Nurse [ label = "{Nurse|| }"]
-edge [
-	arrowhead = "empty"
-	]
-Operations_Staff->Staff[xlabel=" "]
-edge [
-	arrowhead = "empty"
-	]
-Tehnician->Technical_Staff[xlabel=" "]
-edge [
-	arrowhead = "empty"
-	]
-Technologist->Technical_Staff[xlabel=" "]
-edge [
-	arrowhead = "empty"
-	]
-Receptionist->Front_Desk_Staff[xlabel=" "]
-edge [
-	arrowhead = "empty"
-	]
-Surgeon->Doctor[xlabel=" "]
-edge [
-	arrowhead = "empty"
-	]
-Surgical_Technologist->Technologist[xlabel=" "]
-edge [
-	arrowhead = "empty"
-	]
-Staff->Person[xlabel=" "]
-edge [
-	arrowhead = "empty"
-	]
-Administrative_Staff->Staff[xlabel=" "]
-edge [
-	arrowhead = "empty"
-	]
-Nurse->Operations_Staff[xlabel=" "]
-edge [
-	arrowhead = "empty"
-	]
-Doctor->Operations_Staff[xlabel=" "]
-edge [
-	arrowhead = "empty" style=dashed
-	]
-Hospital->Callable[xlabel=" "]
-edge [
-	arrowhead = "curve"  style = filled
-	]
-Department->Hospital[xlabel="department"][taillabel=""]
 edge [
 	arrowhead = "empty"
 	]
@@ -80,7 +32,51 @@ Recipe->Patient[xlabel="recipe"][taillabel=""]
 edge [
 	arrowhead = "empty"
 	]
+Doctor->Operations_Staff[xlabel=" "]
+edge [
+	arrowhead = "empty"
+	]
+Surgical_Technologist->Technologist[xlabel=" "]
+edge [
+	arrowhead = "empty"
+	]
+Operations_Staff->Staff[xlabel=" "]
+edge [
+	arrowhead = "empty"
+	]
+Surgeon->Doctor[xlabel=" "]
+edge [
+	arrowhead = "empty"
+	]
+Administrative_Staff->Staff[xlabel=" "]
+edge [
+	arrowhead = "empty"
+	]
 Front_Desk_Staff->Administrative_Staff[xlabel=" "]
+edge [
+	arrowhead = "empty"
+	]
+Technical_Staff->Staff[xlabel=" "]
+edge [
+	arrowhead = "empty" style=dashed
+	]
+Hospital->Callable[xlabel=" "]
+edge [
+	arrowhead = "curve"  style = filled
+	]
+Department->Hospital[xlabel="department"][taillabel=""]
+edge [
+	arrowhead = "empty"
+	]
+Staff->Person[xlabel=" "]
+edge [
+	arrowhead = "empty"
+	]
+Tehnician->Technical_Staff[xlabel=" "]
+edge [
+	arrowhead = "empty"
+	]
+Receptionist->Front_Desk_Staff[xlabel=" "]
 edge [
 	arrowhead = "empty" style=dashed
 	]
@@ -92,5 +88,9 @@ Staff->Department[xlabel="staff"][taillabel="[0..*]"]
 edge [
 	arrowhead = "empty"
 	]
-Technical_Staff->Staff[xlabel=" "]
+Technologist->Technical_Staff[xlabel=" "]
+edge [
+	arrowhead = "empty"
+	]
+Nurse->Operations_Staff[xlabel=" "]
 }

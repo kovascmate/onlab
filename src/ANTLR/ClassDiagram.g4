@@ -19,7 +19,13 @@ class
         enumerations
     '}'
     ;
-
+class_def
+    : VISIBILITY?
+    'class'
+    class_name
+    ('extends' extended_class_name)?
+    ('implements' interface_name)?
+    ;
 interface
     : VISIBILITY?
     interface_def
@@ -31,7 +37,6 @@ interface
         enumerations
     '}'
     ;
-
 interface_def
     : 'interface'
     interface_name
@@ -81,13 +86,7 @@ variable
     : (string_variable | int_variable | boolean_variable | date_variable)
     ;
 
-class_def
-    : VISIBILITY?
-    'class'
-    class_name
-    ('extends' extended_class_name)?
-    ('implements' interface_name)?
-    ;
+
 
 class_name
     : CLASS_NAME

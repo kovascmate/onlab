@@ -7,6 +7,7 @@ import generated.ClassDiagram.ClassDiagramBaseVisitor;
 import symboltable.ClassSymbol;
 import symboltable.FunctionSymbol;
 import symboltable.InterfaceSymbol;
+import symboltable.VariableSymbol;
 
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class ClassDiagramSemanticAnalyzer extends ClassDiagramBaseVisitor<Object
           checkParentClassExsistence();
           checkInterfaceExsistence();
           checkOwnParentClass();
-          checkInterfaceFunctionExsistence();
+          checkInterfaceVariableExsistence();
           return  null;
       }
       public Object checkParentClassExsistence() {
@@ -33,7 +34,7 @@ public class ClassDiagramSemanticAnalyzer extends ClassDiagramBaseVisitor<Object
                   if(!typeSystem.containsKey(parentClass)){
                       String exception_title ="No parent class as :"+parentClass +" in the scope!";
                       try {
-                          throw new ClassDiagramException(0, 0, exception_title); // Adjust line and column as needed
+                          throw new ClassDiagramException(0, 0, exception_title);
                       } catch (ClassDiagramException e) {
                           e.showErrorDialog();
                       }
@@ -76,12 +77,12 @@ public class ClassDiagramSemanticAnalyzer extends ClassDiagramBaseVisitor<Object
         }
         return null;
     }
-    public Object checkInterfaceFunctionExsistence(){
+    public Object checkInterfaceVariableExsistence(){
         List<InterfaceSymbol> list = typeSystem.getInterfaces();
         for(InterfaceSymbol sym : list){
-            List<FunctionSymbol> functions = sym.getFunctions();
-            if (!functions.isEmpty()){
-                String exception_title = "Interface can't have any function!";
+            List<VariableSymbol> variables = sym.getVariableSymbols();
+            if (!variables.isEmpty()){
+                String exception_title = "Interface can't have any variable!";
                 try {
                     throw new ClassDiagramException(0, 0, exception_title);
                 } catch (ClassDiagramException e) {

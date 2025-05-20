@@ -30,7 +30,7 @@
 <text text-anchor="middle" x="76.62" y="-745.08" font-family="Times New Roman,serif" font-size="14.00"> </text>
 </g>
 <!-- Receptionist&#45;&gt;Front_Desk_Staff -->
-<g id="edge4" class="edge">
+<g id="edge15" class="edge">
 <title>Receptionist&#45;&gt;Front_Desk_Staff</title>
 <path fill="none" stroke="black" d="M68.29,-854.51C69.39,-844.1 70.6,-832.52 71.76,-821.5"/>
 <polygon fill="none" stroke="black" points="75.22,-822.11 72.78,-811.8 68.26,-821.38 75.22,-822.11"/>
@@ -60,7 +60,7 @@
 <text text-anchor="middle" x="277.62" y="-473.45" font-family="Times New Roman,serif" font-size="14.00">+ printStaffInfo() :string</text>
 </g>
 <!-- Operations_Staff&#45;&gt;Staff -->
-<g id="edge1" class="edge">
+<g id="edge6" class="edge">
 <title>Operations_Staff&#45;&gt;Staff</title>
 <path fill="none" stroke="black" d="M277.62,-622.32C277.62,-614.54 277.62,-606.01 277.62,-597.36"/>
 <polygon fill="none" stroke="black" points="281.13,-597.48 277.63,-587.48 274.13,-597.48 281.13,-597.48"/>
@@ -77,7 +77,7 @@
 <text text-anchor="middle" x="97.62" y="-628.95" font-family="Times New Roman,serif" font-size="14.00"> </text>
 </g>
 <!-- Front_Desk_Staff&#45;&gt;Administrative_Staff -->
-<g id="edge16" class="edge">
+<g id="edge9" class="edge">
 <title>Front_Desk_Staff&#45;&gt;Administrative_Staff</title>
 <path fill="none" stroke="black" d="M83.04,-738.39C84.96,-727.98 87.09,-716.4 89.11,-705.38"/>
 <polygon fill="none" stroke="black" points="92.54,-706.12 90.9,-695.65 85.65,-704.86 92.54,-706.12"/>
@@ -107,7 +107,7 @@
 <text text-anchor="middle" x="571.62" y="-473.45" font-family="Times New Roman,serif" font-size="14.00">+ printPatientInfo() :string</text>
 </g>
 <!-- Recipe&#45;&gt;Patient -->
-<g id="edge15" class="edge">
+<g id="edge3" class="edge">
 <title>Recipe&#45;&gt;Patient</title>
 <path fill="none" stroke="black" d="M571.62,-622.32C571.62,-614.97 571.62,-606.97 571.62,-598.82"/>
 <polygon fill="black" stroke="black" points="571.63,-598.87 567.63,-592.87 571.63,-586.87 575.63,-592.87 571.63,-598.87"/>
@@ -125,7 +125,7 @@
 <text text-anchor="middle" x="271.62" y="-294.32" font-family="Times New Roman,serif" font-size="14.00">+ removeStaffFromDepartment() :void</text>
 </g>
 <!-- Staff&#45;&gt;Department -->
-<g id="edge18" class="edge">
+<g id="edge17" class="edge">
 <title>Staff&#45;&gt;Department</title>
 <path fill="none" stroke="black" d="M275.8,-466.6C275.02,-441.61 274.12,-412.6 273.35,-387.95"/>
 <polygon fill="none" stroke="black" points="273.36,-388.03 269.17,-382.16 272.98,-376.04 277.17,-381.91 273.36,-388.03"/>
@@ -151,7 +151,7 @@
 <text text-anchor="middle" x="477.62" y="-239.2" font-family="Times New Roman,serif" font-size="14.00">+ printInfo() :string</text>
 </g>
 <!-- Staff&#45;&gt;Person -->
-<g id="edge7" class="edge">
+<g id="edge13" class="edge">
 <title>Staff&#45;&gt;Person</title>
 <path fill="none" stroke="black" d="M352.97,-469.17C367.93,-456.97 383.16,-443.73 396.62,-430.5 397,-430.13 397.37,-429.76 397.75,-429.39"/>
 <polygon fill="none" stroke="black" points="400.03,-432.06 404.54,-422.48 395.03,-427.16 400.03,-432.06"/>
@@ -160,22 +160,22 @@
 <!-- Callable -->
 <g id="node10" class="node">
 <title>Callable</title>
-<polygon fill="none" stroke="black" points="290.75,-0.5 290.75,-71.75 418.5,-71.75 418.5,-0.5 290.75,-0.5"/>
+<polygon fill="none" stroke="black" points="317,-0.5 317,-71.75 392.25,-71.75 392.25,-0.5 317,-0.5"/>
 <text text-anchor="middle" x="354.62" y="-54.45" font-family="Times New Roman,serif" font-size="14.00">«Callable»</text>
-<polyline fill="none" stroke="black" points="290.75,-48 418.5,-48"/>
-<text text-anchor="middle" x="354.62" y="-30.7" font-family="Times New Roman,serif" font-size="14.00">&#45; phoneNumber : int</text>
-<polyline fill="none" stroke="black" points="290.75,-24.25 418.5,-24.25"/>
+<polyline fill="none" stroke="black" points="317,-48 392.25,-48"/>
+<text text-anchor="middle" x="354.62" y="-30.7" font-family="Times New Roman,serif" font-size="14.00"> </text>
+<polyline fill="none" stroke="black" points="317,-24.25 392.25,-24.25"/>
 <text text-anchor="middle" x="354.62" y="-6.95" font-family="Times New Roman,serif" font-size="14.00"> </text>
 </g>
 <!-- Patient&#45;&gt;Callable -->
-<g id="edge14" class="edge">
+<g id="edge2" class="edge">
 <title>Patient&#45;&gt;Callable</title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M581.37,-466.7C588.84,-405.35 592.82,-307.6 558.62,-232.25 529.2,-167.4 467.45,-113.3 419.55,-78.64"/>
-<polygon fill="none" stroke="black" points="421.58,-75.79 411.41,-72.85 417.53,-81.5 421.58,-75.79"/>
-<text text-anchor="middle" x="556.74" y="-234.68" font-family="Times New Roman,serif" font-size="14.00"> </text>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M581.37,-466.7C588.84,-405.35 592.82,-307.6 558.62,-232.25 525.49,-159.24 451.4,-99.86 402.23,-66.5"/>
+<polygon fill="none" stroke="black" points="404.26,-63.66 394,-61.02 400.38,-69.48 404.26,-63.66"/>
+<text text-anchor="middle" x="555.97" y="-232.99" font-family="Times New Roman,serif" font-size="14.00"> </text>
 </g>
 <!-- Patient&#45;&gt;Person -->
-<g id="edge13" class="edge">
+<g id="edge1" class="edge">
 <title>Patient&#45;&gt;Person</title>
 <path fill="none" stroke="black" d="M543.04,-466.6C538.96,-458.22 534.66,-449.39 530.29,-440.43"/>
 <polygon fill="none" stroke="black" points="533.53,-439.09 526,-431.63 527.24,-442.16 533.53,-439.09"/>
@@ -193,7 +193,7 @@
 <text text-anchor="middle" x="225.62" y="-737.2" font-family="Times New Roman,serif" font-size="14.00"> </text>
 </g>
 <!-- Doctor&#45;&gt;Operations_Staff -->
-<g id="edge10" class="edge">
+<g id="edge4" class="edge">
 <title>Doctor&#45;&gt;Operations_Staff</title>
 <path fill="none" stroke="black" d="M245.14,-730.43C249.03,-721.89 253.13,-712.89 257.06,-704.27"/>
 <polygon fill="none" stroke="black" points="260.15,-705.93 261.11,-695.38 253.78,-703.03 260.15,-705.93"/>
@@ -210,7 +210,7 @@
 <text text-anchor="middle" x="225.62" y="-861.2" font-family="Times New Roman,serif" font-size="14.00">+ performSurgery() :void</text>
 </g>
 <!-- Surgeon&#45;&gt;Doctor -->
-<g id="edge5" class="edge">
+<g id="edge7" class="edge">
 <title>Surgeon&#45;&gt;Doctor</title>
 <path fill="none" stroke="black" d="M225.62,-854.51C225.62,-846.58 225.62,-837.97 225.62,-829.45"/>
 <polygon fill="none" stroke="black" points="229.13,-829.46 225.63,-819.46 222.13,-829.46 229.13,-829.46"/>
@@ -237,18 +237,18 @@
 <text text-anchor="middle" x="424.62" y="-745.08" font-family="Times New Roman,serif" font-size="14.00"> </text>
 </g>
 <!-- Surgical_Technologist&#45;&gt;Technologist -->
-<g id="edge6" class="edge">
+<g id="edge5" class="edge">
 <title>Surgical_Technologist&#45;&gt;Technologist</title>
 <path fill="none" stroke="black" d="M428.1,-854.51C427.64,-844.1 427.13,-832.52 426.65,-821.5"/>
 <polygon fill="none" stroke="black" points="430.16,-821.64 426.23,-811.8 423.17,-821.95 430.16,-821.64"/>
 <text text-anchor="middle" x="425.26" y="-834.92" font-family="Times New Roman,serif" font-size="14.00"> </text>
 </g>
 <!-- Department&#45;&gt;Callable -->
-<g id="edge17" class="edge">
+<g id="edge16" class="edge">
 <title>Department&#45;&gt;Callable</title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M267.77,-287.52C265.34,-241.32 266.47,-166.55 291.62,-108.25 295.84,-98.47 301.94,-89.1 308.71,-80.55"/>
-<polygon fill="none" stroke="black" points="311.2,-83.02 314.97,-73.12 305.85,-78.51 311.2,-83.02"/>
-<text text-anchor="middle" x="270.8" y="-178.98" font-family="Times New Roman,serif" font-size="14.00"> </text>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M267.77,-287.52C265.34,-241.32 266.47,-166.55 291.62,-108.25 295.94,-98.25 302.23,-88.67 309.17,-79.96"/>
+<polygon fill="none" stroke="black" points="311.81,-82.27 315.62,-72.38 306.48,-77.73 311.81,-82.27"/>
+<text text-anchor="middle" x="270.86" y="-178.6" font-family="Times New Roman,serif" font-size="14.00"> </text>
 </g>
 <!-- Hospital -->
 <g id="node15" class="node">
@@ -287,14 +287,14 @@
 <text text-anchor="middle" x="424.62" y="-628.95" font-family="Times New Roman,serif" font-size="14.00"> </text>
 </g>
 <!-- Technical_Staff&#45;&gt;Staff -->
-<g id="edge19" class="edge">
+<g id="edge10" class="edge">
 <title>Technical_Staff&#45;&gt;Staff</title>
 <path fill="none" stroke="black" d="M385.23,-622.32C375.13,-613.4 363.93,-603.5 352.68,-593.56"/>
 <polygon fill="none" stroke="black" points="355.03,-590.97 345.22,-586.97 350.4,-596.22 355.03,-590.97"/>
 <text text-anchor="middle" x="362.87" y="-606.67" font-family="Times New Roman,serif" font-size="14.00"> </text>
 </g>
 <!-- Technologist&#45;&gt;Technical_Staff -->
-<g id="edge3" class="edge">
+<g id="edge18" class="edge">
 <title>Technologist&#45;&gt;Technical_Staff</title>
 <path fill="none" stroke="black" d="M424.62,-738.39C424.62,-727.98 424.62,-716.4 424.62,-705.38"/>
 <polygon fill="none" stroke="black" points="428.13,-705.68 424.63,-695.68 421.13,-705.68 428.13,-705.68"/>
@@ -319,7 +319,7 @@
 <text text-anchor="middle" x="578.62" y="-737.2" font-family="Times New Roman,serif" font-size="14.00">+ repairEquipment() :int</text>
 </g>
 <!-- Tehnician&#45;&gt;Technical_Staff -->
-<g id="edge2" class="edge">
+<g id="edge14" class="edge">
 <title>Tehnician&#45;&gt;Technical_Staff</title>
 <path fill="none" stroke="black" d="M520.84,-730.43C507.67,-720.67 493.69,-710.31 480.59,-700.6"/>
 <polygon fill="none" stroke="black" points="483.02,-698.04 472.9,-694.9 478.85,-703.67 483.02,-698.04"/>
@@ -336,7 +336,7 @@
 <text text-anchor="middle" x="331.62" y="-745.08" font-family="Times New Roman,serif" font-size="14.00"> </text>
 </g>
 <!-- Nurse&#45;&gt;Operations_Staff -->
-<g id="edge9" class="edge">
+<g id="edge19" class="edge">
 <title>Nurse&#45;&gt;Operations_Staff</title>
 <path fill="none" stroke="black" d="M315.13,-738.39C310.05,-727.65 304.38,-715.67 299.02,-704.33"/>
 <polygon fill="none" stroke="black" points="302.29,-703.08 294.85,-695.53 295.97,-706.07 302.29,-703.08"/>

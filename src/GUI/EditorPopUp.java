@@ -44,6 +44,8 @@ public class EditorPopUp {
         if (instance == null) {
             instance = new EditorPopUp(_symbol);
         } else {
+//            instance = null;
+//            instance = new EditorPopUp(_symbol);
             instance.frame.toFront();
             instance.frame.requestFocus();
         }
@@ -82,13 +84,11 @@ public class EditorPopUp {
         nameLabel = new JLabel("Name:");
 
 
-        if (symbol instanceof VariableSymbol) {
-            VariableSymbol variableSymbol = (VariableSymbol) symbol;
+        if (symbol instanceof VariableSymbol variableSymbol) {
             visibilityField = new JTextField(variableSymbol.getVisibility());
             typeField = new JTextField(variableSymbol.getType());
             nameField = new JTextField(variableSymbol.getName());
-        } else if (symbol instanceof FunctionSymbol) {
-            FunctionSymbol functionSymbol = (FunctionSymbol) symbol;
+        } else if (symbol instanceof FunctionSymbol functionSymbol) {
             visibilityField = new JTextField(functionSymbol.getVisibility());
             typeField = new JTextField(functionSymbol.getReturnType());
             nameField = new JTextField(functionSymbol.getName());
@@ -107,13 +107,11 @@ public class EditorPopUp {
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (symbol instanceof VariableSymbol) {
-                    VariableSymbol variableSymbol = (VariableSymbol) symbol;
+                if (symbol instanceof VariableSymbol variableSymbol) {
                     variableSymbol.setVisibility(visibilityField.getText());
                     variableSymbol.setType(typeField.getText());
                     variableSymbol.setName(nameField.getText());
-                } else if (symbol instanceof FunctionSymbol) {
-                    FunctionSymbol functionSymbol = (FunctionSymbol) symbol;
+                } else if (symbol instanceof FunctionSymbol functionSymbol) {
                     functionSymbol.setVisibility(visibilityField.getText());
                     functionSymbol.setReturnType(typeField.getText());
                     functionSymbol.setName(nameField.getText());
@@ -124,24 +122,27 @@ public class EditorPopUp {
         });
     }
     private void initializeComponents(Symbol symbol1,Symbol symbol2) {
+
+        System.out.println("initializeComponents");
         visibilityLabel = new JLabel("Visibility:");
         typeLabel = new JLabel("Type:");
         nameLabel = new JLabel("Name:");
 
 
-        if (symbol1 instanceof VariableSymbol) {
-            visibilityField = new JTextField();
-            typeField = new JTextField();
-            nameField = new JTextField();
-        } else if (symbol1 instanceof FunctionSymbol) {
-            visibilityField = new JTextField();
-            typeField = new JTextField();
-            nameField = new JTextField();
+        if (symbol2 instanceof VariableSymbol) {
+            visibilityField = new JTextField("");
+            typeField = new JTextField("");
+            nameField = new JTextField("");
+        } else if (symbol2 instanceof FunctionSymbol) {
+            visibilityField = new JTextField("");
+            typeField = new JTextField("");
+            nameField = new JTextField("");
         }
 
         cancelButton = new JButton("Cancel");
         saveButton = new JButton("Save");
 
+        System.out.println("initializeComponents2");
         // Add action listener to CancelButton
         cancelButton.addActionListener(new ActionListener() {
             @Override
@@ -152,30 +153,24 @@ public class EditorPopUp {
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (symbol instanceof VariableSymbol) {
-                    VariableSymbol variableSymbol = (VariableSymbol) symbol;
+                if (symbol2 instanceof VariableSymbol variableSymbol) {
                     variableSymbol.setVisibility(visibilityField.getText());
                     variableSymbol.setType(typeField.getText());
                     variableSymbol.setName(nameField.getText());
-                    if(symbol2 instanceof ClassSymbol){
-                        ClassSymbol classSymbol = (ClassSymbol) symbol2;
+                    if(symbol1 instanceof ClassSymbol classSymbol){
                         classSymbol.addVariable(variableSymbol);
                     }
-                    else if (symbol2 instanceof InterfaceSymbol){
-                        InterfaceSymbol interfaceSymbol = (InterfaceSymbol) symbol2;
+                    else if (symbol1 instanceof InterfaceSymbol interfaceSymbol){
                         interfaceSymbol.addVariable(variableSymbol);
                     }
-                } else if (symbol instanceof FunctionSymbol) {
-                    FunctionSymbol functionSymbol = (FunctionSymbol) symbol;
+                } else if (symbol2 instanceof FunctionSymbol functionSymbol) {
                     functionSymbol.setVisibility(visibilityField.getText());
                     functionSymbol.setReturnType(typeField.getText());
                     functionSymbol.setName(nameField.getText());
-                    if(symbol2 instanceof ClassSymbol){
-                        ClassSymbol classSymbol = (ClassSymbol) symbol2;
+                    if(symbol1 instanceof ClassSymbol classSymbol){
                         classSymbol.addFunction(functionSymbol);
                     }
-                    else if (symbol2 instanceof InterfaceSymbol){
-                        InterfaceSymbol interfaceSymbol = (InterfaceSymbol) symbol2;
+                    else if (symbol1 instanceof InterfaceSymbol interfaceSymbol){
                         interfaceSymbol.addFunction(functionSymbol);
                     }
                 }
@@ -186,6 +181,7 @@ public class EditorPopUp {
     }
 
     private void addComponentsToFrame() {
+        System.out.println("addComponentsToFrame");
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
         gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -223,5 +219,6 @@ public class EditorPopUp {
         gbc.gridy = 3;
         gbc.gridwidth = 2;
         frame.add(buttonPanel, gbc);
+        System.out.println("addComponentsToFrame end");
     }
 }

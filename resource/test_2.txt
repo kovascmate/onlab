@@ -16,7 +16,6 @@ class Person{
 
 }
 public interface Callable{
-    private int phoneNumber;
 
 }
 public class Recipe{

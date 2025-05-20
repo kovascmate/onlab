@@ -15,6 +15,7 @@ import symboltable.FunctionSymbol;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.beans.Visibility;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -38,6 +39,7 @@ public class MainGUI {
     private JLabel classNameLabel;
     private TypeSystem typeSystem;
     private EditorPopUp editorPopUp;
+    private Symbol selectedSymbol = new ClassSymbol("");
 
     public MainGUI(TypeSystem _typesystem) {
         this.typeSystem = _typesystem;
@@ -116,7 +118,7 @@ public class MainGUI {
                         EditorPopUp editorPopUp = EditorPopUp.getInstance(selectedSymbol);
                     }
                 }else{
-                    EditorPopUp editorPopUp = EditorPopUp.getInstance(new VariableSymbol("","",null));
+                    EditorPopUp editorPopUp = EditorPopUp.getInstance(selectedSymbol,new VariableSymbol("","",""));
                 }
             }
         });
@@ -131,6 +133,8 @@ public class MainGUI {
                     if (selectedSymbol instanceof FunctionSymbol) {
                         EditorPopUp editorPopUp = EditorPopUp.getInstance(selectedSymbol);
                     }
+                }else{
+                    EditorPopUp editorPopUp = EditorPopUp.getInstance(selectedSymbol,new FunctionSymbol("","",null,""));
                 }
             }
         });
@@ -196,8 +200,8 @@ public class MainGUI {
 
         // Create a menu
         JMenu OpenMenu = new JMenu("Open");
-        JMenu editMenu = new JMenu("Edit");
-        JMenu helpMenu = new JMenu("Help");
+        /*JMenu editMenu = new JMenu("Edit");*/
+        /*JMenu helpMenu = new JMenu("Help");*/
         JMenu exportMenu = new JMenu("Export");
 
         // Add menu items to the menu
@@ -210,9 +214,9 @@ public class MainGUI {
         OpenMenu.add(codeItem);
         OpenMenu.add(dotItem);
 
-        JMenuItem exportTypeSystem = new JMenuItem("Export Type System");
+        /*JMenuItem exportTypeSystem = new JMenuItem("Export Type System");*/
         JMenuItem exportSourceCode = new JMenuItem("Export Source Code");
-        exportTypeSystem.addActionListener(new ActionListener() {
+        /*exportTypeSystem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -222,7 +226,7 @@ public class MainGUI {
                 }
             }
         });
-        exportMenu.add(exportTypeSystem);
+        exportMenu.add(exportTypeSystem);*/
 
         exportSourceCode.addActionListener(new ActionListener() {
             @Override
@@ -272,8 +276,8 @@ public class MainGUI {
 
         // Add menus to the menu bar
         menuBar.add(OpenMenu);
-        menuBar.add(editMenu);
-        menuBar.add(helpMenu);
+        /*menuBar.add(editMenu);*/
+       /* menuBar.add(helpMenu);*/
         menuBar.add(exportMenu);
 
         // Set the menu bar to the frame
@@ -283,6 +287,7 @@ public class MainGUI {
     public void updateClassPanel(String className) {
         // Get the selected class or interface
         Symbol selectedSymbol = typeSystem.get(className);
+        this.selectedSymbol = selectedSymbol;
 
         // Clear the attributeList and functionList
         attributeList.setListData(new String[0]);
