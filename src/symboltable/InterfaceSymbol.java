@@ -15,6 +15,13 @@ public class InterfaceSymbol extends Symbol{
         functions_symbol = new ArrayList<>();
         connections_symbol = new ArrayList<>();
     }
+
+    public FunctionSymbol getFunctionSymbol(int _index){
+        return functions_symbol.get(_index);
+    }
+    public VariableSymbol getVariableSymbol(int _index){
+        return variables_symbol.get(_index);
+    }
     public String getName(){
         return super.getName();
     }
@@ -50,6 +57,9 @@ public class InterfaceSymbol extends Symbol{
         }
         functions_symbol.add(_function_symbol);
         return false;
+    }
+    public List<FunctionSymbol> getFunctions(){
+        return functions_symbol;
     }
     public boolean addConnection(ConnectionSymbol _connection_symbol){
         if(connections_symbol.contains(_connection_symbol)){

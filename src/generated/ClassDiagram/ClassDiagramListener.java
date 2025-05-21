@@ -1,5 +1,5 @@
-// Generated from C:/Users/kmate/Desktop/asd/onlab/src/ANTLR/ClassDiagram.g4 by ANTLR 4.13.1
-package generated;
+// Generated from C:/Users/kmate/Desktop/�j mappa/onlab/src/ANTLR/ClassDiagram.g4 by ANTLR 4.13.1
+package generated.ClassDiagram;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -248,6 +248,16 @@ public interface ClassDiagramListener extends ParseTreeListener {
 	 */
 	void exitBoolean_variable(ClassDiagramParser.Boolean_variableContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link ClassDiagramParser#date_variable}.
+	 * @param ctx the parse tree
+	 */
+	void enterDate_variable(ClassDiagramParser.Date_variableContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ClassDiagramParser#date_variable}.
+	 * @param ctx the parse tree
+	 */
+	void exitDate_variable(ClassDiagramParser.Date_variableContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link ClassDiagramParser#variable_name}.
 	 * @param ctx the parse tree
 	 */
@@ -337,4 +347,24 @@ public interface ClassDiagramListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitComposition(ClassDiagramParser.CompositionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ClassDiagramParser#association}.
+	 * @param ctx the parse tree
+	 */
+	void enterAssociation(ClassDiagramParser.AssociationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ClassDiagramParser#association}.
+	 * @param ctx the parse tree
+	 */
+	void exitAssociation(ClassDiagramParser.AssociationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ClassDiagramParser#multiplicity}.
+	 * @param ctx the parse tree
+	 */
+	void enterMultiplicity(ClassDiagramParser.MultiplicityContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ClassDiagramParser#multiplicity}.
+	 * @param ctx the parse tree
+	 */
+	void exitMultiplicity(ClassDiagramParser.MultiplicityContext ctx);
 }

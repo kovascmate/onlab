@@ -1,5 +1,5 @@
-// Generated from C:/Users/kmate/Desktop/asd/onlab/src/ANTLR/ClassDiagram.g4 by ANTLR 4.13.1
-package generated;
+// Generated from C:/Users/kmate/Desktop/�j mappa/onlab/src/ANTLR/ClassDiagram.g4 by ANTLR 4.13.1
+package generated.ClassDiagram;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -305,6 +305,18 @@ public class ClassDiagramBaseListener implements ClassDiagramListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterDate_variable(ClassDiagramParser.Date_variableContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDate_variable(ClassDiagramParser.Date_variableContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterVariable_name(ClassDiagramParser.Variable_nameContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -408,6 +420,30 @@ public class ClassDiagramBaseListener implements ClassDiagramListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitComposition(ClassDiagramParser.CompositionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAssociation(ClassDiagramParser.AssociationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAssociation(ClassDiagramParser.AssociationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterMultiplicity(ClassDiagramParser.MultiplicityContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMultiplicity(ClassDiagramParser.MultiplicityContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

@@ -1,0 +1,26 @@
+public class Ember{
+    public string nev;
+    private date szuletesiDatum;
+    private string tajSzam;
+    public void printInfo(){
+    }
+
+}
+
+public class Orvos extends Ember{
+    public string pecsetSzam;
+    public string szakterulet;
+}
+
+public class Beteg extends Ember{
+    public string korlap;
+    public  void addGyogyszer(){
+     }
+    public aggregation Gyogyszer : felirtGyogyszerek;
+
+}
+public class Gyogyszer {
+    public string nev;
+    public string hatoanyag;
+    public int mennyiseg;
+}

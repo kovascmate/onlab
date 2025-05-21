@@ -1,7 +1,7 @@
 package symboltable;
 
 public abstract class Symbol {
-    private final String name;
+    private  String name;
     private  static SymbolType symbolType;
 
     public Symbol(String name) {
@@ -15,7 +15,9 @@ public abstract class Symbol {
         symbolType  = SymbolType.SYMBOL;
         name = "";
     }
-
+    public void setName(String _name){
+        name = _name;
+    }
     public String getName() {
         return name;
     }

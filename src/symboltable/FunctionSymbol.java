@@ -23,6 +23,9 @@ public class FunctionSymbol extends Symbol {
         this.visibility = "public";
         this.symbolType = SymbolType.FUNCTIONSYMBOL;
     }
+    public void setReturnType(String _returnType){
+        returnType = _returnType;
+    }
 
     public void setVisibility(String _visibility){
         visibility = _visibility;
@@ -48,6 +51,10 @@ public class FunctionSymbol extends Symbol {
         }
         sb.append(")");
         return sb.toString();
+    }
+
+    public String getVisibility(){
+        return visibility;
     }
     public String getVisibilityIcon(){
         switch (visibility){

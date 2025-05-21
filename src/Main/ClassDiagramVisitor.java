@@ -2,8 +2,8 @@ package Main;
 
 import TypeSystem.TypeSystem;
 import exceptition.ClassDiagramExceptionHandler;
-import generated.ClassDiagramBaseVisitor;
-import generated.ClassDiagramParser;
+import generated.ClassDiagram.ClassDiagramBaseVisitor;
+import generated.ClassDiagram.ClassDiagramParser;
 import symboltable.*;
 
 import java.util.ArrayList;
@@ -11,21 +11,34 @@ import java.util.List;
 
 //Szemantikai elemzés
 public class ClassDiagramVisitor extends ClassDiagramBaseVisitor<Object> {
+    private static ClassDiagramVisitor instance = null;
     private Scope scope;
     private ClassDiagramExceptionHandler exceptionHandler;
     private TypeSystem typeSystem;
 
-    public ClassDiagramVisitor(ClassDiagramExceptionHandler _exceptionHandler,TypeSystem _ts){
+    private ClassDiagramVisitor(ClassDiagramExceptionHandler _exceptionHandler,TypeSystem _ts){
         exceptionHandler =_exceptionHandler;
         typeSystem = _ts;
         scope = new Scope(null);
     }
 
+    public static synchronized ClassDiagramVisitor getInstance(ClassDiagramExceptionHandler _exceptionHandler,TypeSystem _ts){
+        if(instance == null){
+            instance = new ClassDiagramVisitor(_exceptionHandler,_ts);
+        }
+        return instance;
+    }
+    public static void resetInstance(){
+        instance = null;
+    }
+
 
 
     public Object visitProgram(ClassDiagramParser.ProgramContext _context){
-        ClassDiagramParser.Package_defContext packageDefContext =  _context.package_def();
+        if(_context.package_def() != null){
+            ClassDiagramParser.Package_defContext packageDefContext =  _context.package_def();
             visitPackage(packageDefContext);
+        }
         ClassDiagramParser.ImportsContext importsContext =  _context.imports();
             visitImports(importsContext);
         List<ClassDiagramParser.ClassContext> classContext = _context.class_();
@@ -112,18 +125,31 @@ public class ClassDiagramVisitor extends ClassDiagramBaseVisitor<Object> {
         return null;
     }
     public ConnectionSymbol visitConnection(ClassDiagramParser.ConnectionContext _context){
-        String name = "",class_name = "", connection_type = "",visibility;
+        String name = "",class_name = "", connection_type = "",visibility, source_multiplicity = "", target_multiplicity = "";
        if(_context.aggregation() != null){
              class_name = _context.aggregation().CLASS_NAME().getText();
             connection_type = "aggregation";
             name = _context.aggregation().IDENTIFIER().getText();
+           if (_context.aggregation().multiplicity() != null) {
+               source_multiplicity = _context.aggregation().multiplicity().getText();
+           }
 
        } else if (_context.composition() != null) {
            class_name = _context.composition().CLASS_NAME().getText();
            connection_type = "composition";
            name = _context.composition().IDENTIFIER().getText();
+           if (_context.composition().multiplicity() != null) {
+               source_multiplicity = _context.composition().multiplicity().getText();
+           }
+       }else if (_context.association() != null) {
+           class_name = _context.association().CLASS_NAME().getText();
+           connection_type = "association";
+           name = _context.association().IDENTIFIER().getText();
+           if (_context.association().multiplicity() != null) {
+               source_multiplicity = _context.association().multiplicity().getText();
+           }
        }
-       ConnectionSymbol connectionSymbol = new ConnectionSymbol(name,connection_type,class_name,"public");
+       ConnectionSymbol connectionSymbol = new ConnectionSymbol(name,connection_type,class_name,"public",source_multiplicity,"");
        typeSystem.add(name, connectionSymbol);
        return connectionSymbol;
     }
@@ -139,7 +165,7 @@ public class ClassDiagramVisitor extends ClassDiagramBaseVisitor<Object> {
         }
 
         FunctionSymbol functionSymbol = new FunctionSymbol(function_name,function_return,parameters,function_visibility);
-        typeSystem.add(function_name,functionSymbol);
+        //typeSystem.add(function_name,functionSymbol);
         return functionSymbol;
     }
     public Object visitConnection(ClassDiagramParser.ConnectionsContext _context){
@@ -164,6 +190,10 @@ public class ClassDiagramVisitor extends ClassDiagramBaseVisitor<Object> {
                var_name = _context.int_variable().variable_name().getText();
                type = "int";
                visibility =  _context.int_variable().VISIBILITY().getText();
+           }else if(_context.date_variable() != null){
+               var_name = _context.date_variable().variable_name().getText();
+               type = "date";
+               visibility =  _context.date_variable().VISIBILITY().getText();
            }
            VariableSymbol sym = new VariableSymbol(var_name,type,visibility);
         return sym;

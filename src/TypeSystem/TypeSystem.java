@@ -6,10 +6,23 @@ import java.util.List;
 
 import symboltable.*;
 public class TypeSystem {
+    private static TypeSystem instance = null;
     private HashMap<String, Symbol> hashMap;
 
-    public TypeSystem(){
+    private TypeSystem(){
+
         hashMap = new HashMap<>();
+    }
+
+    public static synchronized TypeSystem getInstance(){
+        if(instance == null){
+            instance = new TypeSystem();
+        }
+        return instance;
+    }
+
+    public static void resetInstance(){
+        instance = null;
     }
 
     public boolean containsKey(String _key){

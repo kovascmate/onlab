@@ -1,9 +1,13 @@
 package Main;
 
 import TypeSystem.TypeSystem;
+import exceptition.ClassDiagramException;
 import exceptition.ClassDiagramExceptionHandler;
-import generated.ClassDiagramBaseVisitor;
+import generated.ClassDiagram.ClassDiagramBaseVisitor;
 import symboltable.ClassSymbol;
+import symboltable.FunctionSymbol;
+import symboltable.InterfaceSymbol;
+import symboltable.VariableSymbol;
 
 import java.util.List;
 
@@ -19,6 +23,7 @@ public class ClassDiagramSemanticAnalyzer extends ClassDiagramBaseVisitor<Object
           checkParentClassExsistence();
           checkInterfaceExsistence();
           checkOwnParentClass();
+          checkInterfaceVariableExsistence();
           return  null;
       }
       public Object checkParentClassExsistence() {
@@ -29,9 +34,9 @@ public class ClassDiagramSemanticAnalyzer extends ClassDiagramBaseVisitor<Object
                   if(!typeSystem.containsKey(parentClass)){
                       String exception_title ="No parent class as :"+parentClass +" in the scope!";
                       try {
-                          throw new Exception(exception_title);
-                      } catch (Exception e) {
-                          throw new RuntimeException(e);
+                          throw new ClassDiagramException(0, 0, exception_title);
+                      } catch (ClassDiagramException e) {
+                          e.showErrorDialog();
                       }
                   }
               }
@@ -46,9 +51,9 @@ public class ClassDiagramSemanticAnalyzer extends ClassDiagramBaseVisitor<Object
                 if(!typeSystem.containsKey(implementedInterface)){
                     String exception_title ="No interface as :"+implementedInterface +" in the scope!";
                     try {
-                        throw new Exception(exception_title);
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
+                        throw new ClassDiagramException(0, 0, exception_title);
+                    } catch (ClassDiagramException e) {
+                        e.showErrorDialog();
                     }
                 }
             }
@@ -63,10 +68,25 @@ public class ClassDiagramSemanticAnalyzer extends ClassDiagramBaseVisitor<Object
                 if(parentClass.equals(sym.getName())){
                     String exception_title = "The class is its own parent class: "+sym.getClass()+" !";
                     try {
-                        throw new Exception(exception_title);
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
+                        throw new ClassDiagramException(0, 0, exception_title); // Adjust line and column as needed
+                    } catch (ClassDiagramException e) {
+                        e.showErrorDialog();
                     }
+                }
+            }
+        }
+        return null;
+    }
+    public Object checkInterfaceVariableExsistence(){
+        List<InterfaceSymbol> list = typeSystem.getInterfaces();
+        for(InterfaceSymbol sym : list){
+            List<VariableSymbol> variables = sym.getVariableSymbols();
+            if (!variables.isEmpty()){
+                String exception_title = "Interface can't have any variable!";
+                try {
+                    throw new ClassDiagramException(0, 0, exception_title);
+                } catch (ClassDiagramException e) {
+                    e.showErrorDialog();
                 }
             }
         }
